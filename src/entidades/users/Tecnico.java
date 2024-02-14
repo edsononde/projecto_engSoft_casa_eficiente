@@ -1,5 +1,7 @@
 package entidades.users;
 
+import dao.ConsultaContador;
+
 
 public class Tecnico extends Utilizador{
     private String morada;
@@ -16,8 +18,10 @@ public class Tecnico extends Utilizador{
     
     public Tecnico(){
         
-        this.idUser = "TEC"+cont;
-        cont++;
+        ConsultaContador cont = new ConsultaContador();
+        this.idUser = "TEC"+cont.contadorTecnico();
+        cont.incrementaTecnicos();
+        
     }
     
 

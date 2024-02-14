@@ -15,7 +15,7 @@ public class Corretor extends Utilizador {
     private ArrayList<Imovel> listaDeImoveis;
     private ArrayList<Contrato> contratos;
     private ArrayList<Notificacao> notificacoes;
-    private int cont;
+   
     public Corretor(String idUser, String nome, String dataNascimento, String senha) {
         super(nome, dataNascimento, senha);
         contratos = new ArrayList<>();

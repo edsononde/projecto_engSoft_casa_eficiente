@@ -1,5 +1,6 @@
 package entidades.users;
 
+import dao.ConsultaContador;
 import entidades.acoes.*;
 import entidades.enumerados.*;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public class Gestor extends Utilizador {
     private ArrayList<Imovel> imoveis;
     private EquipeDeManutencao listaTecnicos;
     private ArrayList<Notificacao> notificacoes;
-    private int cont;
+    
 //CONSTRUCTOR
     public Gestor(ArrayList<Corretor> listaCorretores, EquipeDeManutencao listaTecnicos, ArrayList<Imovel> imoveis, String idUser, String nome, String dataNascimento, String senha) {
         super(nome, dataNascimento, senha);
@@ -24,8 +25,9 @@ public class Gestor extends Utilizador {
     }
     
     public Gestor(){
-    this.idUser = "GES"+ cont;
-    cont++;
+        ConsultaContador cont = new ConsultaContador();
+    this.idUser = "GES"+ cont.contadorGestor();
+    cont.incrementaGestores();
     
     }
     
