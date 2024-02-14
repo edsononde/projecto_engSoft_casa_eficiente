@@ -4,6 +4,7 @@
  */
 package views.Gestor;
 
+import views.Tecnico.*;
 import views.Corretor.*;
 import views.Cliente.*;
 import views.*;
@@ -12,12 +13,12 @@ import views.*;
  *
  * @author Jason Matias
  */
-public class TelaGestorCorrector extends javax.swing.JFrame {
+public class TelaGestorTecnicos extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaLoginCliente
      */
-    public TelaGestorCorrector() {
+    public TelaGestorTecnicos() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -43,9 +44,11 @@ public class TelaGestorCorrector extends javax.swing.JFrame {
         tbImovel = new javax.swing.JTable();
         txtPesquisa = new javax.swing.JTextField();
         btnPesquisa = new javax.swing.JButton();
-        btnAdicionar = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         btnRemover = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
+        btnAdicionar1 = new javax.swing.JButton();
+        btnVoltar1 = new javax.swing.JButton();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -57,9 +60,9 @@ public class TelaGestorCorrector extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel2.setText("CORRECTORES");
+        jLabel2.setText("VISUALIZAÇÃO DE TÉCNICOS");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(260, 30, 80, 30);
+        jLabel2.setBounds(210, 20, 170, 30);
 
         tbImovel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,7 +80,7 @@ public class TelaGestorCorrector extends javax.swing.JFrame {
         tbImovel.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(90, 120, 510, 240);
+        jScrollPane2.setBounds(50, 120, 510, 240);
         getContentPane().add(txtPesquisa);
         txtPesquisa.setBounds(340, 90, 170, 22);
 
@@ -85,14 +88,14 @@ public class TelaGestorCorrector extends javax.swing.JFrame {
         getContentPane().add(btnPesquisa);
         btnPesquisa.setBounds(515, 90, 90, 22);
 
-        btnAdicionar.setText("Adicionar");
-        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar.setText("VOLTAR");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdicionarActionPerformed(evt);
+                btnVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAdicionar);
-        btnAdicionar.setBounds(0, 90, 90, 22);
+        getContentPane().add(btnVoltar);
+        btnVoltar.setBounds(10, 370, 90, 22);
 
         btnRemover.setText("Remover");
         getContentPane().add(btnRemover);
@@ -107,22 +110,51 @@ public class TelaGestorCorrector extends javax.swing.JFrame {
         getContentPane().add(btnAlterar);
         btnAlterar.setBounds(190, 90, 65, 22);
 
+        btnAdicionar1.setText("Adicionar");
+        btnAdicionar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionar1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAdicionar1);
+        btnAdicionar1.setBounds(0, 90, 90, 22);
+
+        btnVoltar1.setText("VOLTAR");
+        btnVoltar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltar1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVoltar1);
+        btnVoltar1.setBounds(10, 370, 90, 22);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        // TODO add your handling code here:
-        TelaCorretorCadastro tcc = new TelaCorretorCadastro();
-        tcc.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnAdicionarActionPerformed
-
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-        TelaAlterarCorrector tac = new TelaAlterarCorrector();
-        tac.setVisible(true);
+        TelaTecnicoAlterar tta = new TelaTecnicoAlterar();
+        tta.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // TODO add your handling code here:
+        TelaGestorMenu ttm = new TelaGestorMenu();
+        ttm.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnVoltar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVoltar1ActionPerformed
+
+    private void btnAdicionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionar1ActionPerformed
+        // TODO add your handling code here:
+        TelaGestorTecnicoCadastro tgtc = new TelaGestorTecnicoCadastro();
+        tgtc.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnAdicionar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,13 +173,13 @@ public class TelaGestorCorrector extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaGestorCorrector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGestorTecnicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaGestorCorrector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGestorTecnicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaGestorCorrector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGestorTecnicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaGestorCorrector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGestorTecnicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -4249,16 +4281,18 @@ public class TelaGestorCorrector extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaGestorCorrector().setVisible(true);
+                new TelaGestorTecnicos().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdicionar;
+    private javax.swing.JButton btnAdicionar1;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnPesquisa;
     private javax.swing.JButton btnRemover;
+    private javax.swing.JButton btnVoltar;
+    private javax.swing.JButton btnVoltar1;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JColorChooser jColorChooser2;
     private javax.swing.JColorChooser jColorChooser3;

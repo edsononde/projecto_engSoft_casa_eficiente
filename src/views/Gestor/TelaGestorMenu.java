@@ -76,6 +76,11 @@ public class TelaGestorMenu extends javax.swing.JFrame {
         btnNotificacao.setText("NOTIFICAÇÃO");
 
         btnTecnico.setText("TÉCNICO");
+        btnTecnico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTecnicoActionPerformed(evt);
+            }
+        });
 
         btnCorrector.setText("CORRECTOR");
 
@@ -165,6 +170,10 @@ public class TelaGestorMenu extends javax.swing.JFrame {
         tcc.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnTecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTecnicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTecnicoActionPerformed
 
     /**
      * @param args the command line arguments
