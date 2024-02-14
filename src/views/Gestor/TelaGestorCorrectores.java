@@ -6,7 +6,6 @@ package views.Gestor;
 
 import views.Corretor.*;
 import views.Cliente.*;
-import views.*;
 
 /**
  *

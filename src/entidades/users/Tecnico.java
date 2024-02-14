@@ -17,7 +17,7 @@ public class Tecnico {
 
     @Override
     public String toString() {
-        return "Tecnico{" + "Id Tecnico: " + idTecnico + ", Nome: " + nome + ", Morada:" + morada + '}';
+        return "Tecnico: " + "Id Tecnico: " + idTecnico + ", Nome: " + nome + ", Morada:" + morada + "\n";
     }
     
 //GETTRES E SETTERS
@@ -26,7 +26,7 @@ public class Tecnico {
     }
 
     public void setIdTecnico(String idTecnico) {
-        this.idTecnico = idTecnico;
+        this.idTecnico = "TEC"+idTecnico;
     }
 
     public String getNome() {

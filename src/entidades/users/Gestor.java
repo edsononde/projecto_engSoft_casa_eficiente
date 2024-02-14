@@ -23,6 +23,8 @@ public class Gestor extends Utilizador {
         
     }
     
+    public Gestor(){}
+    
 //FUNÇÕES
     public void pesquisarFuncionario(String id){
         if(this.listaTecnicos.verificarTecnico(id) != null)

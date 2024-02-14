@@ -3,12 +3,13 @@ package entidades.acoes;
 import entidades.users.Cliente;
 import entidades.users.Corretor;
 import entidades.enumerados.*;
+import java.util.Date;
 
 
 public class Contrato {
     private String idContrato = "CON";
     private String informacao;
-    private String data;
+    private Date data;
     private double valor;
     private Cliente cliente;
     private Corretor corretor;
@@ -20,7 +21,7 @@ public class Contrato {
     public Contrato() {
     }
 
-    public Contrato(String informacao, String data, double valor, Cliente cliente, Corretor corretor) {
+    public Contrato(String informacao, Date data, double valor, Cliente cliente, Corretor corretor) {
         this.informacao = informacao;
         this.data = data;
         this.valor = valor;
@@ -32,7 +33,7 @@ public class Contrato {
 
     @Override
     public String toString() {
-        return "Contrato\nInformações: " + informacao + "\nData:" + data + "\nPreço:" + valor+"0 KZ" +"\nEstado do Pagamento: "
+        return "Contrato\nInformações: " + informacao + "\nData:" + data + "\nPreço:" + valor+" KZ" +"\nEstado do Pagamento: "
                 +pagamento.getEstado()+"\nEstado do Contracto: " +estado+"\n"+"\n"+"Informações do Cliente\n"+cliente +
                 "\n"+"\nInformações do Corrector\n" + corretor;
     }
@@ -47,11 +48,11 @@ public class Contrato {
         this.informacao = informacao;
     }
 
-    public String getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(Date data) {
         this.data = data;
     }
 
@@ -60,7 +61,9 @@ public class Contrato {
     }
 
     public void setValor(double valor) {
+        
         this.valor = valor;
+        
     }
 
     public Cliente getCliente() {
@@ -69,6 +72,22 @@ public class Contrato {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+    
+    public void setCliente(String cliente) {
+        this.cliente.setIdUser(cliente);
+    }
+    
+    public String getClienteString() {
+        return cliente.getIdUser();
+    }
+    
+    public void setCorretor(String corretor) {
+        this.corretor.setIdUser(corretor);
+    }
+    
+    public String getCorretorString() {
+        return corretor.getIdUser();
     }
 
     public Corretor getCorretor() {
@@ -94,6 +113,10 @@ public class Contrato {
     public void setPagamento(EstadoPagamentoContrato pagamento) {
         this.pagamento = pagamento;
     }
+    
+     public void setPagamento(String pagamento) {
+        this.pagamento = EstadoPagamentoContrato.valueOf(pagamento.toUpperCase());
+    }
 
     public EstadoContrato getEstado() {
         return estado;
@@ -101,6 +124,10 @@ public class Contrato {
 
     public void setEstado(EstadoContrato estado) {
         this.estado = estado;
+    }
+    
+    public void setEstado(String estado) {
+        this.estado = EstadoContrato.valueOf(estado.toUpperCase());
     }
     
     
