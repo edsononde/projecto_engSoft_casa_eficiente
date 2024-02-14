@@ -38,6 +38,7 @@ public class TelaCorretorLogin extends javax.swing.JFrame {
         jColorChooser3 = new javax.swing.JColorChooser();
         jColorChooser4 = new javax.swing.JColorChooser();
         jColorChooser5 = new javax.swing.JColorChooser();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         idCliente = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -46,35 +47,23 @@ public class TelaCorretorLogin extends javax.swing.JFrame {
         btnVoltar = new javax.swing.JButton();
         btnEntrar = new javax.swing.JButton();
         btnCadastro = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("    TELA LOGIN - CLIENTE");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(220, 20, 141, 45);
 
         idCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idClienteActionPerformed(evt);
             }
         });
-        getContentPane().add(idCliente);
-        idCliente.setBounds(200, 120, 160, 22);
 
         jLabel2.setText("Digite o seu ID");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(200, 100, 225, 16);
 
         jLabel3.setText("Digite a sua palavra-passe");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(200, 170, 233, 16);
 
         pfdSenha.setText("jPasswordField1");
-        getContentPane().add(pfdSenha);
-        pfdSenha.setBounds(200, 190, 160, 22);
 
         btnVoltar.setText("VOLTAR");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -82,8 +71,6 @@ public class TelaCorretorLogin extends javax.swing.JFrame {
                 btnVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVoltar);
-        btnVoltar.setBounds(0, 300, 75, 23);
 
         btnEntrar.setText("ENTRAR");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -91,8 +78,6 @@ public class TelaCorretorLogin extends javax.swing.JFrame {
                 btnEntrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEntrar);
-        btnEntrar.setBounds(370, 240, 75, 23);
 
         btnCadastro.setText("CADASTRAR-SE");
         btnCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -100,10 +85,56 @@ public class TelaCorretorLogin extends javax.swing.JFrame {
                 btnCadastroActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCadastro);
-        btnCadastro.setBounds(110, 240, 120, 23);
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 520, 320);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(jLabel1))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(idCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(pfdSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(140, 140, 140)
+                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jLabel2)
+                .addGap(4, 4, 4)
+                .addComponent(idCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(pfdSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCadastro)
+                    .addComponent(btnEntrar))
+                .addGap(37, 37, 37)
+                .addComponent(btnVoltar))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(jLabel3))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
