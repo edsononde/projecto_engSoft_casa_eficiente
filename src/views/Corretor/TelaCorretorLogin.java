@@ -6,7 +6,6 @@ package views.Corretor;
 
 import views.Cliente.*;
 import main.TelaPrincipal;
-import views.*;
 
 /**
  *

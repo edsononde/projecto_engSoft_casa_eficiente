@@ -4,8 +4,6 @@
  */
 package views.Cliente;
 
-import views.*;
-
 /**
  *
  * @author Jason Matias

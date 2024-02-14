@@ -62,6 +62,11 @@ public class TelaClienteCadastro extends javax.swing.JFrame {
         jLabel5.setText("Data de Nascimeneto");
 
         txtDataNasci.setText("jTextField2");
+        txtDataNasci.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDataNasciActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Senha");
 
@@ -203,6 +208,10 @@ public class TelaClienteCadastro extends javax.swing.JFrame {
         tcl.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void txtDataNasciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataNasciActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDataNasciActionPerformed
 
     /**
      * @param args the command line arguments
