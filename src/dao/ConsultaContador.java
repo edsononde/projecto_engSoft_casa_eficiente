@@ -150,5 +150,257 @@ public class ConsultaContador {
     
     }
     
+    public int contadorGestor() {
+        
+        
+        String sql = "SELECT MAX(contador) as ultimo_id FROM contgestor;";
+        int contador = 0;
+        try {
+            
+            if(this.conexao.conectar()){
+                
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                
+                ResultSet resultado = sentenca.executeQuery();
+                while(resultado.next()){
+                    
+                    contador = resultado.getInt("ultimo_id");
+                    
+                }
+                
+                    
+                    
+                sentenca.close();
+                
+                this.conexao.getConexao().close();
+                
+            }
+            
+            return contador;
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        
+    }
+    
+    
+    public void incrementaGestores() {
+       
+        String sql = "INSERT INTO contgestor() VALUES ();";
+        try {
+            
+            if(this.conexao.conectar()){
+                
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                
+                
+                sentenca.execute();
+              
+                sentenca.close();
+                
+                this.conexao.getConexao().close();
+                
+            }
+            
+          
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        
+    
+    }
+    
+    public int contadorManutencao() {
+        
+        
+        String sql = "SELECT MAX(contador) as ultimo_id FROM contmanutencao;";
+        int contador = 0;
+        try {
+            
+            if(this.conexao.conectar()){
+                
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                
+                ResultSet resultado = sentenca.executeQuery();
+                while(resultado.next()){
+                    
+                    contador = resultado.getInt("ultimo_id");
+                    
+                }
+                
+                    
+                    
+                sentenca.close();
+                
+                this.conexao.getConexao().close();
+                
+            }
+            
+            return contador;
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        
+    }
+    
+    public void incrementaManutencoes() {
+       
+        String sql = "INSERT INTO contmanutencao() VALUES ();";
+        try {
+            
+            if(this.conexao.conectar()){
+                
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                
+                
+                sentenca.execute();
+              
+                sentenca.close();
+                
+                this.conexao.getConexao().close();
+                
+            }
+            
+          
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        
+    
+    }
+    
+    public int contadorImovel() {
+        
+        
+        String sql = "SELECT MAX(contador) as ultimo_id FROM contimovel;";
+        int contador = 0;
+        try {
+            
+            if(this.conexao.conectar()){
+                
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                
+                ResultSet resultado = sentenca.executeQuery();
+                while(resultado.next()){
+                    
+                    contador = resultado.getInt("ultimo_id");
+                    
+                }
+                
+                    
+                    
+                sentenca.close();
+                
+                this.conexao.getConexao().close();
+                
+            }
+            
+            return contador;
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        
+    }
+    
+    public void incrementaImoveis() {
+       
+        String sql = "INSERT INTO contimovel() VALUES ();";
+        try {
+            
+            if(this.conexao.conectar()){
+                
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                
+                
+                sentenca.execute();
+              
+                sentenca.close();
+                
+                this.conexao.getConexao().close();
+                
+            }
+            
+          
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        
+    
+    }
+    
+    public int contadorTecnico() {
+        
+        
+        String sql = "SELECT MAX(contador) as ultimo_id FROM conttecnico;";
+        int contador = 0;
+        try {
+            
+            if(this.conexao.conectar()){
+                
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                
+                ResultSet resultado = sentenca.executeQuery();
+                while(resultado.next()){
+                    
+                    contador = resultado.getInt("ultimo_id");
+                    
+                }
+                
+                    
+                    
+                sentenca.close();
+                
+                this.conexao.getConexao().close();
+                
+            }
+            
+            return contador;
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        
+    }
+    
+    public void incrementaTecnicos() {
+       
+        String sql = "INSERT INTO conttecnico() VALUES ();";
+        try {
+            
+            if(this.conexao.conectar()){
+                
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                
+                
+                sentenca.execute();
+              
+                sentenca.close();
+                
+                this.conexao.getConexao().close();
+                
+            }
+            
+          
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        
+    
+    }
     
 }

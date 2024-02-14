@@ -13,7 +13,7 @@ public class Cliente extends Utilizador {
 
     private ArrayList<Contrato> contratos;
     private String endereco;
-    private static int cont;
+   
 //CONSTRUCTORES
     public Cliente(String idUser, String nome, String dataNascimento, String senha) {
         super(nome, dataNascimento, senha);
