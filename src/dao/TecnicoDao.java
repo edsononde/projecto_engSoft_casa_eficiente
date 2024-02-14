@@ -179,4 +179,30 @@ public class TecnicoDao implements DaoGenerica<Tecnico> {
         return null; // Retorna null se não encontrar um usuário com as credenciais fornecidas
     }
 
+    public Tecnico busca(String idUser) {
+
+        String sql = "SELECT * FROM user WHERE tipoUsuario = 'Tecnico' AND nomeUser = ?";
+        try {
+            if (this.conexao.conectar()) {
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                sentenca.setString(1, idUser);
+                ResultSet resultado = sentenca.executeQuery();
+                if (resultado.next()) {
+                    Tecnico tecnico = new Tecnico();
+                    tecnico.setIdUser(resultado.getString("nomeUser"));
+                    tecnico.setNome(resultado.getString("nome"));
+                    tecnico.setDataNascimento(resultado.getString("dataNasc"));
+                    tecnico.setSenha(resultado.getString("pass"));
+                    sentenca.close();
+                    this.conexao.getConexao().close();
+                    return tecnico; // Retorna o gestor se o login for bem-sucedido
+                }
+                sentenca.close();
+                this.conexao.getConexao().close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null; // Retorna null se não encontrar um usuário com as credenciais fornecidas
+    }
 }

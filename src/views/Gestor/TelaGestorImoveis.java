@@ -56,6 +56,7 @@ public class TelaGestorImoveis extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("VISUALIZAÇÃO DE IMÓVEIS");
 
         tbImovel.setModel(new javax.swing.table.DefaultTableModel(
@@ -155,6 +156,9 @@ public class TelaGestorImoveis extends javax.swing.JFrame {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
+        TelaCadastrarImovel tci = new TelaCadastrarImovel();
+        tci.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
@@ -163,6 +167,9 @@ public class TelaGestorImoveis extends javax.swing.JFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
+        TelaAlterarImovel tci = new TelaAlterarImovel();
+        tci.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     /**
