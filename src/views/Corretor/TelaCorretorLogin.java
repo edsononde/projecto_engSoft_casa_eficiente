@@ -4,6 +4,9 @@
  */
 package views.Corretor;
 
+import dao.CorretorDao;
+import entidades.users.Corretor;
+import javax.swing.JOptionPane;
 import views.Cliente.*;
 import main.TelaPrincipal;
 
@@ -79,7 +82,7 @@ public class TelaCorretorLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVoltar);
-        btnVoltar.setBounds(0, 300, 75, 22);
+        btnVoltar.setBounds(0, 300, 75, 23);
 
         btnEntrar.setText("ENTRAR");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +91,7 @@ public class TelaCorretorLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEntrar);
-        btnEntrar.setBounds(370, 240, 75, 22);
+        btnEntrar.setBounds(370, 240, 75, 23);
 
         btnCadastro.setText("CADASTRAR-SE");
         btnCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +100,7 @@ public class TelaCorretorLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCadastro);
-        btnCadastro.setBounds(110, 240, 113, 22);
+        btnCadastro.setBounds(110, 240, 120, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -115,9 +118,23 @@ public class TelaCorretorLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        TelaCorretorMenu tco = new TelaCorretorMenu();
-        tco.setVisible(true);
-        dispose();
+        if (!idCliente.getText().isBlank() && !pfdSenha.getText().isBlank()) {
+            CorretorDao corretordao = new CorretorDao();
+            Corretor corretor = new Corretor();
+            corretor = corretordao.fazerLogin(idCliente.getText(), pfdSenha.getText());
+            if (corretor != null) {
+                JOptionPane.showMessageDialog(null, "Seja Bem Vindo, " + corretor.getNome(), "Acesso Permitido", 2);
+
+                TelaCorretorMenu tco = new TelaCorretorMenu();
+                tco.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Id ou Senha incorrecto", "Acesso Negado", 1);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos", "ERRO DE LOGIN", 1);
+        }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
