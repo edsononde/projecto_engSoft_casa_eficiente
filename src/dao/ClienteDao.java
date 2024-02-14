@@ -23,6 +23,7 @@ public class ClienteDao implements DaoGenerica<Cliente>{
     public ClienteDao() {
         
         this.conexao = new Conexao();
+        
     }
     
     
@@ -244,7 +245,6 @@ public class ClienteDao implements DaoGenerica<Cliente>{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        
         
         
     }
