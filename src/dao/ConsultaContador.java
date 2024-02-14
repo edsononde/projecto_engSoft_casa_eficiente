@@ -56,4 +56,99 @@ public class ConsultaContador {
         
     }
     
+    
+    
+    public int contadorCorretor() {
+        
+        
+        String sql = "SELECT MAX(contador) as ultimo_id FROM contCorretores;";
+        int contador = 0;
+        try {
+            
+            if(this.conexao.conectar()){
+                
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                
+                ResultSet resultado = sentenca.executeQuery();
+                while(resultado.next()){
+                    
+                    contador = resultado.getInt("ultimo_id");
+                    
+                }
+                
+                    
+                    
+                sentenca.close();
+                
+                this.conexao.getConexao().close();
+                
+            }
+            
+            return contador;
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        
+    }
+    
+    public void incrementaClientes() {
+       
+        String sql = "INSERT INTO contClientes() VALUES ();";
+        try {
+            
+            if(this.conexao.conectar()){
+                
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                
+                
+                sentenca.execute();
+              
+                sentenca.close();
+                
+                this.conexao.getConexao().close();
+                
+            }
+            
+          
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        
+    
+    }
+    
+    
+    public void incrementaCorretores() {
+       
+        String sql = "INSERT INTO contCorretorres() VALUES ();";
+        try {
+            
+            if(this.conexao.conectar()){
+                
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                
+                
+                sentenca.execute();
+              
+                sentenca.close();
+                
+                this.conexao.getConexao().close();
+                
+            }
+            
+          
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        
+    
+    }
+    
+    
 }

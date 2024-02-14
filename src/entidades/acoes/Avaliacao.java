@@ -22,7 +22,7 @@ public class Avaliacao {
 
     @Override
     public String toString() {
-        return "Avaliacãoo\nNúmeroEstrelas:" + numeroEstrelas + "\nComentário:" + comentario+"\nNome: "+nomeCliente;
+        return "Avaliacão\nNúmeroEstrelas:" + numeroEstrelas + "\nComentário:" + comentario+"\nNome: "+nomeCliente;
     }
     
 //MÉTODOS GETTRS E SETTERS

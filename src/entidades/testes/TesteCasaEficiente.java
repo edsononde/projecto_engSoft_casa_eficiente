@@ -54,7 +54,7 @@ public class TesteCasaEficiente {
         
         
         ConsultaContador cont = new ConsultaContador();
-        System.out.println(cont.contadorCliente());
+        System.out.println(cont.contadorCorretor());
     }
     
     

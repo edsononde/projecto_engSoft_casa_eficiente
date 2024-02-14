@@ -1,5 +1,6 @@
 package entidades.users;
 
+import dao.ConsultaContador;
 import entidades.enumerados.EstadoImovel;
 import entidades.acoes.Contrato;
 import entidades.acoes.Imovel;
@@ -24,9 +25,10 @@ public class Corretor extends Utilizador {
     }
     
     public Corretor(){
-    
-        this.idUser = "COR"+cont;
-        cont++;
+         ConsultaContador cont = new ConsultaContador();
+        
+        this.idUser = "COR"+cont.contadorCorretor();
+        cont.incrementaCorretores();
     }
 
     @Override

@@ -39,7 +39,7 @@ public class TecnicoDao implements DaoGenerica<Tecnico>{
                //comentario
                     
                 
-                sentenca.setString(1, tec.getIdTecnico());
+                sentenca.setString(1, tec.getIdUser());
                 sentenca.setString(2, tec.getSenha());
                 sentenca.setString(3,  tec.getDataNascimento());
                 sentenca.setString(4,"Tecnico");
@@ -79,11 +79,11 @@ public class TecnicoDao implements DaoGenerica<Tecnico>{
                     
                     Tecnico tec = new Tecnico();
                     
-                    tec.setIdTecnico(resultado.getString("nomeUser"));
+                    tec.setIdUser(resultado.getString("nomeUser"));
                     
                     tec.setNome(resultado.getString("nome"));
                     
-                    tec.set(resultado.getString("dataNasc"));
+                    tec.setDataNascimento(resultado.getString("dataNasc"));
                     
                     tec.setSenha(resultado.getString("pass"));
                     
@@ -111,7 +111,11 @@ public class TecnicoDao implements DaoGenerica<Tecnico>{
 
     @Override
     public void alterar(Tecnico tec) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        
+        
+        
+        
     }
 
     @Override

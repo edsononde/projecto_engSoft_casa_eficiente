@@ -24,7 +24,7 @@ public class Cliente extends Utilizador {
         ConsultaContador cont = new ConsultaContador();
         
         this.idUser = "CLI"+cont.contadorCliente(); 
-        
+        cont.incrementaClientes();
     }
     
 //METODOS    
