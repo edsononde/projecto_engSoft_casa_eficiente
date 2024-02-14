@@ -4,6 +4,10 @@
  */
 package views.Cliente;
 
+import dao.ClienteDao;
+import dao.GestorDao;
+import entidades.users.Cliente;
+import javax.swing.JOptionPane;
 import main.TelaPrincipal;
 
 /**
@@ -78,7 +82,7 @@ public class TelaClienteLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVoltar);
-        btnVoltar.setBounds(0, 300, 75, 22);
+        btnVoltar.setBounds(0, 300, 75, 23);
 
         btnEntrar.setText("ENTRAR");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +91,7 @@ public class TelaClienteLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEntrar);
-        btnEntrar.setBounds(370, 240, 75, 22);
+        btnEntrar.setBounds(370, 240, 75, 23);
 
         btnCadastro.setText("CADASTRAR-SE");
         btnCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -96,7 +100,7 @@ public class TelaClienteLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCadastro);
-        btnCadastro.setBounds(110, 240, 113, 22);
+        btnCadastro.setBounds(110, 240, 120, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -114,9 +118,24 @@ public class TelaClienteLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        TelaClienteMenu tco = new TelaClienteMenu();
-        tco.setVisible(true);
-        dispose();
+        if (!idCliente.getText().isBlank() && !pfdSenha.getText().isBlank()) {
+            ClienteDao clientedao = new ClienteDao();
+            Cliente cliente = new Cliente();
+            cliente = clientedao.fazerLogin(idCliente.getText(), pfdSenha.getText());
+            if (cliente != null) {
+                JOptionPane.showMessageDialog(null, "Seja Bem Vindo, " + cliente.getNome(), "Acesso Permitido", 2);
+
+                TelaClienteMenu tco = new TelaClienteMenu();
+                tco.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Id ou Senha incorrecto", "Acesso Negado", 1);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos", "ERRO DE LOGIN", 1);
+        }
+
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -140,16 +159,24 @@ public class TelaClienteLogin extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaClienteLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClienteLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaClienteLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClienteLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaClienteLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClienteLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaClienteLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClienteLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
