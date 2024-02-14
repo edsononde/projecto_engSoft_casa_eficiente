@@ -1,48 +1,37 @@
 package entidades.users;
 
 
-public class Tecnico {
-    private String idTecnico;
-    private String nome;
+public class Tecnico extends Utilizador{
     private String morada;
 
 
 //CONSTRUCTOR
 
-    public Tecnico(String idTecnico, String nome, String morada) {
-        this.idTecnico = "TEC"+idTecnico;
+    public Tecnico(String morada, String idUser, String nome, String dataNascimento, String senha) {
+        super(idUser, nome, dataNascimento, senha);
         this.nome = nome;
         this.morada = morada;
     }
 
+    
+
     @Override
     public String toString() {
-        return "Tecnico: " + "Id Tecnico: " + idTecnico + ", Nome: " + nome + ", Morada:" + morada + "\n";
+        return "Tecnico: " + "Id Tecnico: " + super.getIdUser() + ", Nome: " + nome + ", Morada:" + morada + "\n";
     }
     
 //GETTRES E SETTERS
-    public String getIdTecnico() {
-        return idTecnico;
-    }
-
-    public void setIdTecnico(String idTecnico) {
-        this.idTecnico = "TEC"+idTecnico;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getMorada() {
         return morada;
     }
 
     public void setMorada(String morada) {
         this.morada = morada;
+    }
+
+    @Override
+    public void fazerLogin() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

@@ -29,7 +29,7 @@ public class EquipeDeManutencao<T> {
 
     //REMOVER UM TECNICO
     public void removerTecnicos(Tecnico tecnico) {
-        Tecnico veTecnico = verificarTecnico(tecnico.getIdTecnico());
+        Tecnico veTecnico = verificarTecnico(tecnico.getIdUser());
         if (veTecnico != null) {
             this.tecnicos.remove(tecnico);
             JOptionPane.showMessageDialog(null, "REMOVIDO COM SUCESSO", "Detalhes de Técnico", 2);
@@ -40,7 +40,7 @@ public class EquipeDeManutencao<T> {
 
     //ADICIONAR TECNICO
     public void adicionarTecnico(Tecnico tecnico) {
-        Tecnico veTecnico = this.verificarTecnico(tecnico.getIdTecnico());
+        Tecnico veTecnico = this.verificarTecnico(tecnico.getIdUser());
         if(veTecnico == null){
             this.tecnicos.add(tecnico);
             JOptionPane.showMessageDialog(null, "Adicionado com Sucesso", "Detalhes de Técnico", 2);
@@ -105,7 +105,7 @@ public class EquipeDeManutencao<T> {
     public Tecnico verificarTecnico(String idTecnico) {
         if (!this.tecnicos.isEmpty()) {
             for (Tecnico t : this.tecnicos) {
-                if (t.getIdTecnico() == idTecnico) {
+                if (t.getIdUser() == idTecnico) {
                     return t;
                 }
             }
