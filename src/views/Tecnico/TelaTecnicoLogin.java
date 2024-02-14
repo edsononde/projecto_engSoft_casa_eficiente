@@ -4,9 +4,15 @@
  */
 package views.Tecnico;
 
+import dao.GestorDao;
+import dao.TecnicoDao;
+import entidades.users.Gestor;
+import entidades.users.Tecnico;
+import javax.swing.JOptionPane;
 import views.Corretor.*;
 import views.Cliente.*;
 import main.TelaPrincipal;
+import views.Gestor.TelaGestorMenu;
 
 /**
  *
@@ -99,9 +105,24 @@ public class TelaTecnicoLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        TelaTecnicoMenu tco = new TelaTecnicoMenu();
-        tco.setVisible(true);
-        dispose();
+        if (idCliente.getText() != null && pfdSenha.getText() != null) {
+            TecnicoDao tecnicodao = new TecnicoDao();
+            Tecnico tecnico = new Tecnico();
+            tecnico = tecnicodao.fazerLogin(idCliente.getText(), pfdSenha.getText());
+            if (tecnico != null) {
+                JOptionPane.showMessageDialog(null, "Seja Bem Vindo, " + tecnico.getNome(), "Acesso Permitido", 2);
+
+                TelaTecnicoMenu tco = new TelaTecnicoMenu();
+                tco.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Id ou Senha incorrecto", "Acesso Negado", 1);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos", "ERRO DE LOGIN", 1);
+        }
+
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
