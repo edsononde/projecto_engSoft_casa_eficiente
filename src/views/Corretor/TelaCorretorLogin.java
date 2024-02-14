@@ -46,6 +46,7 @@ public class TelaCorretorLogin extends javax.swing.JFrame {
         btnVoltar = new javax.swing.JButton();
         btnEntrar = new javax.swing.JButton();
         btnCadastro = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -101,6 +102,8 @@ public class TelaCorretorLogin extends javax.swing.JFrame {
         });
         getContentPane().add(btnCadastro);
         btnCadastro.setBounds(110, 240, 120, 23);
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 520, 320);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -207,6 +210,7 @@ public class TelaCorretorLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField pfdSenha;
     // End of variables declaration//GEN-END:variables
 }
