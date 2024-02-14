@@ -149,9 +149,6 @@ public class Gestor extends Utilizador {
         this.listaTecnicos = listaTecnicos;
     }
 
-    @Override
-    public void fazerLogin() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
     
 }

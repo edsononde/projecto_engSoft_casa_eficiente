@@ -36,9 +36,6 @@ public class Tecnico extends Utilizador{
         this.morada = morada;
     }
 
-    @Override
-    public void fazerLogin() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
     
 }

@@ -31,9 +31,7 @@ public class Corretor extends Utilizador {
         cont.incrementaCorretores();
     }
 
-    @Override
-    public void fazerLogin() {
-    }
+    
 
     public void adicionarImovelPortifolio(Imovel imovel) {
         Imovel veImovel = this.verificarImovel(idUser, listaDeImoveis);
