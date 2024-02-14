@@ -33,7 +33,10 @@ public abstract class Utilizador {
     }
     
 //FUNÇÕES
-    public abstract void fazerLogin();
+    public void fazerLogin(String id, String senha){
+        this.idUser = id;
+        this.senha = senha;
+    }
     
     public void visualizarImovel(Imovel imovel) {
         JOptionPane.showMessageDialog(null, imovel.toString(), "Visualização de Imóvel", 2);

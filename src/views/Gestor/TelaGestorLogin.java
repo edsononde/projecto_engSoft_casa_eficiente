@@ -4,6 +4,9 @@
  */
 package views.Gestor;
 
+import dao.GestorDao;
+import entidades.users.Gestor;
+import javax.swing.JOptionPane;
 import views.Corretor.*;
 import views.Cliente.*;
 import main.TelaPrincipal;
@@ -48,7 +51,7 @@ public class TelaGestorLogin extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setText("    TELA LOGIN - CLIENTE");
+        jLabel1.setText("    TELA LOGIN - GESTOR");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(220, 20, 141, 45);
 
@@ -79,7 +82,7 @@ public class TelaGestorLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVoltar);
-        btnVoltar.setBounds(0, 300, 75, 22);
+        btnVoltar.setBounds(0, 300, 75, 23);
 
         btnEntrar.setText("ENTRAR");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +91,7 @@ public class TelaGestorLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEntrar);
-        btnEntrar.setBounds(370, 240, 75, 22);
+        btnEntrar.setBounds(370, 240, 75, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -106,9 +109,22 @@ public class TelaGestorLogin extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         // TODO add your handling code here:
-        TelaPrincipal tp = new TelaPrincipal();
-        tp.setVisible(true);
-        dispose();
+        if (!idCliente.getText().isBlank() && !pfdSenha.getText().isBlank()) {
+            GestorDao gestordao = new GestorDao();
+            Gestor gestor = new Gestor();
+            gestor = gestordao.fazerLogin(idCliente.getText(), pfdSenha.getText());
+            if (gestor != null) {
+                JOptionPane.showMessageDialog(null, "Seja Bem Vindo, "+gestor.getNome(), "Acesso Permitido", 2);
+                
+                TelaPrincipal tp = new TelaPrincipal();
+                tp.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Id ou Senha incorrecto", "Acesso Negado", 1);
+            }
+
+        } else
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos", "ERRO DE LOGIN", 1);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**

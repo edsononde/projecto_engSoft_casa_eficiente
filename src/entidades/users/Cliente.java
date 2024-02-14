@@ -28,11 +28,7 @@ public class Cliente extends Utilizador {
     }
     
 //METODOS    
-    @Override
-    public void fazerLogin() {
-        
-        
-    }
+    
 
     @Override
     public void setIdUser(String idUser) {

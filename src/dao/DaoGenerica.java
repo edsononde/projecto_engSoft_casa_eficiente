@@ -4,6 +4,7 @@
  */
 package dao;
 
+import entidades.users.Gestor;
 import java.util.ArrayList;
 
 /**
@@ -20,4 +21,5 @@ public interface DaoGenerica<ObjectoGenerico>{
     public void alterar(ObjectoGenerico obj);
     
     public void excluir(String obj);
+    
 }
