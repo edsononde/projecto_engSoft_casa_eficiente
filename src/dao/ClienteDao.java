@@ -37,7 +37,7 @@ public class ClienteDao implements DaoGenerica<Cliente>{
                 
                 PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
                 
-               
+               //comentario
                     
                 
                 sentenca.setString(1, cliente.getIdUser());
