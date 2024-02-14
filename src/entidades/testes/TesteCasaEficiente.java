@@ -58,12 +58,6 @@ public class TesteCasaEficiente {
     }
     
     
-    public static String formataData(Date data){
-    
-        String formato = "dd-MM-yyyy";
-        SimpleDateFormat sdf = new SimpleDateFormat(formato);
-        String date = sdf.format(data);
-        return date;
-    }
+   
     
 }

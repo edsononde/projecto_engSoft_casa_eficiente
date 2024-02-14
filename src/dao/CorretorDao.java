@@ -30,8 +30,8 @@ public class CorretorDao implements DaoGenerica<Corretor>{
     @Override
     public void inserir(Corretor corretor) {
        
-        String sql = "INSERT INTO USER(nomeUser, pass, dataNasc, tipoUsuario, nome) VALUES (?,?,?,?,?)"
-                + "UPDATE user SET idade = FLOOR(DATEDIFF(CURDATE(), dataNasc) / 365);";
+        String sql = "INSERT INTO USER(nomeUser, pass, dataNasc, tipoUsuario, nome) VALUES (?,?,?,?,?)";
+                
         try {
             
             if(this.conexao.conectar()){
@@ -52,7 +52,7 @@ public class CorretorDao implements DaoGenerica<Corretor>{
                 sentenca.close();
                 
                 this.conexao.getConexao().close();
-                
+                this.atualizarIdade();
             }
             
             System.out.println("Adicionado com sucesso!");
@@ -115,8 +115,7 @@ public class CorretorDao implements DaoGenerica<Corretor>{
     public void alterar(Corretor corretor) {
         
         
-        String sql = "UPDATE USER SET pass = ? , dataNasc = ?  WHERE tipoUsuario = 'Corretor' and nomeUser = ?"
-                + "UPDATE user SET idade = FLOOR(DATEDIFF(CURDATE(), dataNasc) / 365);";
+        String sql = "UPDATE USER SET pass = ? , dataNasc = ?  WHERE tipoUsuario = 'Corretor' and nomeUser = ?";
         try {
             
             if(this.conexao.conectar()){
@@ -132,7 +131,7 @@ public class CorretorDao implements DaoGenerica<Corretor>{
                 sentenca.close();
                 
                 this.conexao.getConexao().close();
-                
+                this.atualizarIdade();
             }
             
             
@@ -174,5 +173,31 @@ public class CorretorDao implements DaoGenerica<Corretor>{
         
     }
     
+    public void atualizarIdade(){
+        
+        String sql = "SET SQL_SAFE_UPDATES = 0; UPDATE user SET idade = FLOOR(DATEDIFF(CURDATE(), dataNasc) / 365); ";
+        
+        try {
+            
+            if(this.conexao.conectar()){
+                
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                
+                
+                sentenca.execute();
+                sentenca.close();
+                
+                this.conexao.getConexao().close();
+                
+            }
+            
+            
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        
+}
     
 }

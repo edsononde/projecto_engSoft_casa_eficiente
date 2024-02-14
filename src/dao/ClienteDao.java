@@ -51,7 +51,7 @@ public class ClienteDao implements DaoGenerica<Cliente>{
                 sentenca.close();
                 
                 this.conexao.getConexao().close();
-                
+                this.atualizarIdade();
             }
             
             System.out.println("Adicionado com sucesso!");
@@ -216,6 +216,35 @@ public class ClienteDao implements DaoGenerica<Cliente>{
             
             throw new RuntimeException(e);
         }
+        
+        
+    }
+    
+    
+    public void atualizarIdade(){
+        
+        String sql = "SET SQL_SAFE_UPDATES = 0; UPDATE user SET idade = FLOOR(DATEDIFF(CURDATE(), dataNasc) / 365); ";
+        
+        try {
+            
+            if(this.conexao.conectar()){
+                
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                
+                
+                sentenca.execute();
+                sentenca.close();
+                
+                this.conexao.getConexao().close();
+                
+            }
+            
+            
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
         
         
     }

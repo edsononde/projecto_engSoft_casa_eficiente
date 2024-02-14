@@ -113,6 +113,30 @@ public class TecnicoDao implements DaoGenerica<Tecnico>{
     public void alterar(Tecnico tec) {
         
         
+        String sql = "UPDATE USER SET pass = ? , dataNasc = ?  WHERE tipoUsuario = 'Tecnico' and nomeUser = ?" ;
+        try {
+            
+            if(this.conexao.conectar()){
+                
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                
+                
+                
+                sentenca.setString(1, tec.getSenha());
+                sentenca.setString(2, tec.getDataNascimento());
+                sentenca.setString(3, tec.getIdUser());
+                sentenca.execute();
+                sentenca.close();
+                
+                this.conexao.getConexao().close();
+                
+            }
+            
+            
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         
         
         
@@ -120,7 +144,34 @@ public class TecnicoDao implements DaoGenerica<Tecnico>{
 
     @Override
     public void excluir(String tec) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        String sql = "DELETE FROM USER WHERE nomeUser = ? ";
+        
+        try {
+            
+            if(this.conexao.conectar()){
+                
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                
+                
+                sentenca.setString(1, tec);
+                
+                
+                sentenca.execute();
+                sentenca.close();
+                
+                this.conexao.getConexao().close();
+                
+            }
+            
+            
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        
+        
     }
     
     

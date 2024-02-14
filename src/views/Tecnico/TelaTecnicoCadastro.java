@@ -212,7 +212,7 @@ public class TelaTecnicoCadastro extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        if(txtNome.getText() != null && txtDataNasci.getText() != null && pfdSenha1.getText().equals(pfdSenha2.getText()) && txtMorada.getText()!= null{
+        if(txtNome.getText() != null && txtDataNasci.getText() != null && pfdSenha1.getText().equals(pfdSenha2.getText()) && txtMorada.getText()!= null){
             
            // Tecnico tecnico = new Tecnico(txtMorada.getText(), lblId.getText(), txtNome.getText(), txtDataNasci.getText(),pfdSenha1.getText()!= null);
            // Tecnicodao tecnicodao = new Tecnicodao();
