@@ -5,6 +5,7 @@
 package entidades.testes;
 
 import dao.ClienteDao;
+import dao.ConsultaContador;
 import entidades.acoes.Contrato;
 import entidades.users.Cliente;
 import entidades.users.Corretor;
@@ -41,16 +42,19 @@ public class TesteCasaEficiente {
         
         //Imovel imovel = new Imovel();
         */
-        ClienteDao cli = new ClienteDao();
-        Cliente c = new Cliente();
         
-        c.setIdUser("Edson");
+        /*Cliente c = new Cliente();
+        
+        c.setIdUser("1");
         c.setNome("Edson Silva");
         c.setSenha("1000");
         c.setEndereco("Benfica");
-        c.setDataNascimento("1987-11-21");
+        c.setDataNascimento("1987-11-21");*/
         
-        cli.inserir(c);
+        
+        
+        ConsultaContador cont = new ConsultaContador();
+        System.out.println(cont.contadorCliente());
     }
     
     

@@ -14,16 +14,20 @@ public class Corretor extends Utilizador {
     private ArrayList<Imovel> listaDeImoveis;
     private ArrayList<Contrato> contratos;
     private ArrayList<Notificacao> notificacoes;
-
+    private int cont;
     public Corretor(String idUser, String nome, String dataNascimento, String senha) {
-        super(idUser, nome, dataNascimento, senha);
+        super(nome, dataNascimento, senha);
         contratos = new ArrayList<>();
         notificacoes = new ArrayList<>();
         listaDeImoveis = new ArrayList<>();
-        this.setIdUser("COR"+nome);
+        
     }
     
-    public Corretor(){}
+    public Corretor(){
+    
+        this.idUser = "COR"+cont;
+        cont++;
+    }
 
     @Override
     public void fazerLogin() {

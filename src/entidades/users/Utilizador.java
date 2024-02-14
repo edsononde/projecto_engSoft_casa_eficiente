@@ -13,13 +13,14 @@ public abstract class Utilizador {
     protected String nome;
     protected String dataNascimento;
     protected String senha;
-
+    private int cont;
 //CONSTRUCTOR    
-    public Utilizador(String idUser, String nome, String dataNascimento, String senha) {
-        this.idUser = "UTI"+idUser;
+    public Utilizador(String nome, String dataNascimento, String senha) {
+        this.idUser = "UTI"+cont;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.senha = senha;
+        
     }
     
     public Utilizador(){}

@@ -1,5 +1,6 @@
 package entidades.users;
 
+import dao.ConsultaContador;
 import entidades.acoes.Contrato;
 import entidades.acoes.Imovel;
 import entidades.acoes.Notificacao;
@@ -12,14 +13,19 @@ public class Cliente extends Utilizador {
 
     private ArrayList<Contrato> contratos;
     private String endereco;
-
+    private static int cont;
 //CONSTRUCTORES
     public Cliente(String idUser, String nome, String dataNascimento, String senha) {
-        super(idUser, nome, dataNascimento, senha);
+        super(nome, dataNascimento, senha);
         
     }
     
-    public Cliente() {}
+    public Cliente() {
+        ConsultaContador cont = new ConsultaContador();
+        
+        this.idUser = "CLI"+cont.contadorCliente(); 
+        
+    }
     
 //METODOS    
     @Override

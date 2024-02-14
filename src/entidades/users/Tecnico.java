@@ -5,7 +5,7 @@ public class Tecnico {
     private String idTecnico;
     private String nome;
     private String morada;
-
+    private int cont;
 
 //CONSTRUCTOR
 
@@ -14,7 +14,13 @@ public class Tecnico {
         this.nome = nome;
         this.morada = morada;
     }
-
+    
+    public Tecnico(){
+        
+        this.idTecnico = "TEC"+cont;
+        cont++;
+    }
+    
     @Override
     public String toString() {
         return "Tecnico: " + "Id Tecnico: " + idTecnico + ", Nome: " + nome + ", Morada:" + morada + "\n";

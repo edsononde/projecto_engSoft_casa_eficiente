@@ -11,10 +11,10 @@ public class Gestor extends Utilizador {
     private ArrayList<Imovel> imoveis;
     private EquipeDeManutencao listaTecnicos;
     private ArrayList<Notificacao> notificacoes;
-
+    private int cont;
 //CONSTRUCTOR
     public Gestor(ArrayList<Corretor> listaCorretores, EquipeDeManutencao listaTecnicos, ArrayList<Imovel> imoveis, String idUser, String nome, String dataNascimento, String senha) {
-        super(idUser, nome, dataNascimento, senha);
+        super(nome, dataNascimento, senha);
         this.listaCorretores = new ArrayList<>();
         this.listaCorretores = listaCorretores;
         this.listaTecnicos = listaTecnicos;
@@ -23,7 +23,11 @@ public class Gestor extends Utilizador {
         
     }
     
-    public Gestor(){}
+    public Gestor(){
+    this.idUser = "GES"+ cont;
+    cont++;
+    
+    }
     
 //FUNÇÕES
     public void pesquisarFuncionario(String id){

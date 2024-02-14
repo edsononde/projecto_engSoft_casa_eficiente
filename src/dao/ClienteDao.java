@@ -114,7 +114,7 @@ public class ClienteDao implements DaoGenerica<Cliente>{
     public void alterar(Cliente cliente) {
         
         
-        String sql = "UPDATE USER SET pass = ? , dataNasc = ?  WHERE tipoUsuario = 'Cliente' and nomeUser = ? ";
+        String sql = "UPDATE USER SET pass = ? , dataNasc = ?  WHERE tipoUsuario = 'Cliente' and nomeUser = ? ;"+ "UPDATE user SET idade = FLOOR(DATEDIFF(CURDATE(), dataNasc) / 365);";
         try {
             
             if(this.conexao.conectar()){

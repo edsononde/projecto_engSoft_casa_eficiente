@@ -31,7 +31,7 @@ public class GestorDao implements DaoGenerica<Gestor>{
     @Override
     public void inserir(Gestor gestor) {
        
-        String sql = "INSERT INTO USER(nomeUser, pass, dataNasc, tipoUsuario, nome) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO USER(nomeUser, pass, dataNasc, tipoUsuario, nome) VALUES (?,?,?,?,?)"+ "UPDATE user SET idade = FLOOR(DATEDIFF(CURDATE(), dataNasc) / 365);";
         try {
             
             if(this.conexao.conectar()){
