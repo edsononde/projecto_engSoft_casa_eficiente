@@ -2,7 +2,9 @@ package entidades.users;
 
 import entidades.acoes.Contrato;
 import entidades.acoes.Imovel;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 public abstract class Utilizador {
@@ -11,22 +13,30 @@ public abstract class Utilizador {
     protected String nome;
     protected String dataNascimento;
     protected String senha;
-
+    private int cont;
 //CONSTRUCTOR    
-    public Utilizador(String idUser, String nome, String dataNascimento, String senha) {
-        this.idUser = "UTI"+idUser;
+    public Utilizador(String nome, String dataNascimento, String senha) {
+        this.idUser = "UTI"+cont;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.senha = senha;
+        
     }
+    
+    public Utilizador(){}
 
     @Override
     public String toString() {
-        return "Utilizador Nº" + idUser + "\nNome: "+nome+"\nData De Nascimento: "+dataNascimento;
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        String date = sdf.format(dataNascimento);
+        return "Utilizador Nº" + idUser + "\nNome: "+nome+"\nData De Nascimento: "+date;
     }
     
 //FUNÇÕES
-    public abstract void fazerLogin();
+    public void fazerLogin(String id, String senha){
+        this.idUser = id;
+        this.senha = senha;
+    }
     
     public void visualizarImovel(Imovel imovel) {
         JOptionPane.showMessageDialog(null, imovel.toString(), "Visualização de Imóvel", 2);
@@ -57,7 +67,7 @@ public abstract class Utilizador {
         return null;
     }
 
-    //GETTERS E SETTRS
+    //GETTERS E SETTERS
 
     public String getIdUser() {
         return idUser;

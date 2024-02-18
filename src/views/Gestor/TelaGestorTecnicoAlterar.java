@@ -4,6 +4,10 @@
  */
 package views.Gestor;
 
+import dao.ClienteDao;
+import dao.TecnicoDao;
+import entidades.users.Tecnico;
+import javax.swing.JOptionPane;
 import views.Tecnico.*;
 import views.Corretor.*;
 import views.Cliente.*;
@@ -38,15 +42,15 @@ public class TelaGestorTecnicoAlterar extends javax.swing.JFrame {
         lblId = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtDataNasci = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         pfdSenha1 = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
         pfdSenha2 = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        txtMorada = new javax.swing.JTextField();
+        txtDataNasci = new javax.swing.JFormattedTextField();
+        txtPesquisa = new javax.swing.JTextField();
+        btnPesquisa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,7 +61,7 @@ public class TelaGestorTecnicoAlterar extends javax.swing.JFrame {
 
         jLabel3.setText("Nome:");
 
-        lblId.setText("UTI");
+        lblId.setText("TEC");
 
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,8 +70,6 @@ public class TelaGestorTecnicoAlterar extends javax.swing.JFrame {
         });
 
         jLabel5.setText("Data de Nascimeneto");
-
-        txtDataNasci.setText("jTextField2");
 
         jLabel6.setText("Senha");
 
@@ -93,11 +95,13 @@ public class TelaGestorTecnicoAlterar extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Morada");
+        txtDataNasci.setColumns(3);
+        txtDataNasci.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
-        txtMorada.addActionListener(new java.awt.event.ActionListener() {
+        btnPesquisa.setText("Pesquisa");
+        btnPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMoradaActionPerformed(evt);
+                btnPesquisaActionPerformed(evt);
             }
         });
 
@@ -109,10 +113,10 @@ public class TelaGestorTecnicoAlterar extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnVoltar)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(12, Short.MAX_VALUE)
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(0, 107, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -132,20 +136,18 @@ public class TelaGestorTecnicoAlterar extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblId)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtNome)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtDataNasci)
+                                            .addComponent(txtNome))
                                         .addGap(68, 68, 68))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(0, 6, Short.MAX_VALUE)
-                                        .addComponent(txtDataNasci, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(77, 77, 77)))))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lblId)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEntrar)
-                    .addComponent(txtMorada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(btnPesquisa))
                 .addGap(29, 29, 29))
         );
         jPanel1Layout.setVerticalGroup(
@@ -153,10 +155,12 @@ public class TelaGestorTecnicoAlterar extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jLabel1)
-                .addGap(35, 35, 35)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(lblId))
+                    .addComponent(lblId)
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -164,17 +168,11 @@ public class TelaGestorTecnicoAlterar extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtDataNasci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(pfdSenha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(txtMorada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtDataNasci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(pfdSenha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -225,9 +223,27 @@ public class TelaGestorTecnicoAlterar extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
-    private void txtMoradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMoradaActionPerformed
+    private void btnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMoradaActionPerformed
+        if (txtPesquisa.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "O campo de pesquisa está vazio", "ERRO!", 1);
+        } else {
+            TecnicoDao tecnicodao = new TecnicoDao();
+            Tecnico tecnico = new Tecnico();
+            tecnico = tecnicodao.busca(txtPesquisa.getText());
+            if (tecnico != null) {
+                lblId.setText(tecnico.getIdUser());
+                txtNome.setText(tecnico.getNome());
+                txtDataNasci.setText(tecnico.getDataNascimento());
+                pfdSenha1.setText(tecnico.getSenha());
+                pfdSenha2.setText(tecnico.getSenha());
+                JOptionPane.showMessageDialog(null, "Técino encontrado:\n" + tecnico.toString(), "SUCESSO!", 2);
+            } else {
+                JOptionPane.showMessageDialog(null, "Técino não encontrado", "ERRO!", 1);
+            }
+        }
+
+    }//GEN-LAST:event_btnPesquisaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,11 +345,11 @@ public class TelaGestorTecnicoAlterar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
+    private javax.swing.JButton btnPesquisa;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -341,8 +357,8 @@ public class TelaGestorTecnicoAlterar extends javax.swing.JFrame {
     private javax.swing.JLabel lblId;
     private javax.swing.JPasswordField pfdSenha1;
     private javax.swing.JPasswordField pfdSenha2;
-    private javax.swing.JTextField txtDataNasci;
-    private javax.swing.JTextField txtMorada;
+    private javax.swing.JFormattedTextField txtDataNasci;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
 }

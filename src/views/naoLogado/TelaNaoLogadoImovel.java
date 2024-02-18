@@ -6,7 +6,6 @@ package views.naoLogado;
 
 import main.TelaPrincipal;
 import views.Cliente.*;
-import views.*;
 
 /**
  *

@@ -1,30 +1,35 @@
 package entidades.acoes;
 
 import entidades.enumerados.EstadoImovel;
-import entidades.users.Corretor;
 import java.util.ArrayList;
 
 public class Imovel {
 
     private String tipo;
-    private String idmovel = "I";
+    private String idmovel;
     private String endereco;
     private int numeroQuartos;
     private EstadoImovel estado;
     private Double valor;
-   // private ArrayList<Corretor> corretores;
+    //private ArrayList<Corretor> corretores;
     private ArrayList<Avaliacao> avaliacoes;
-
-    //CONSTRUCTOR
+    private String numUser;
+    
+    private Contrato contrato;
+    
+    //CONSTRUCTORES
     public Imovel(String tipo, String idmovel, String endereco, int numeroQuartos) {
+        
         this.tipo = tipo;
-        this.idmovel = idmovel;
+        this.idmovel = "I"+idmovel;
         this.endereco = endereco;
         this.numeroQuartos = numeroQuartos;
         this.estado = EstadoImovel.LIVRE;
         this.avaliacoes = new ArrayList<>();
-       // this.corretores = new ArrayList<>();
+       
     }
+    
+    public Imovel(){}
 
     @Override
     public String toString() {
@@ -52,7 +57,7 @@ public class Imovel {
     }
 
     public void setIdmovel(String idmovel) {
-        this.idmovel = idmovel;
+        this.idmovel = "I"+idmovel;
     }
 
     public String getEndereco() {
@@ -74,11 +79,7 @@ public class Imovel {
     public EstadoImovel getEstado() {
         return estado;
     }
-
-    public void setEstado(EstadoImovel estado) {
-        this.estado = estado;
-    }
-
+    
     public Double getValor() {
         return valor;
     }
@@ -86,7 +87,23 @@ public class Imovel {
     public void setValor(Double valor) {
         this.valor = valor;
     }
+
+    public String getNumUser() {
+        return numUser;
+    }
+
+    public void setNumUser(String numUser) {
+        this.numUser = numUser;
+    }
+
+    public void setEstado(String estado) {
+        
+        this.estado = EstadoImovel.valueOf(estado.toUpperCase());
+    }
     
-    
+    public void setEstado(EstadoImovel estado) {
+        
+        this.estado = estado;
+    }
 
 }

@@ -1,31 +1,46 @@
 package entidades.users;
 
+import dao.ConsultaContador;
 import entidades.acoes.Contrato;
 import entidades.acoes.Imovel;
 import entidades.acoes.Notificacao;
 import entidades.enumerados.*;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class Cliente extends Utilizador {
 
     private ArrayList<Contrato> contratos;
-    private ArrayList<Notificacao> notificacoes;
-
-//CONSTRUCTOR
+    private String endereco;
+   
+//CONSTRUCTORES
     public Cliente(String idUser, String nome, String dataNascimento, String senha) {
-        super(idUser, nome, dataNascimento, senha);
-        this.setIdUser("CLI"+nome);
+        super(nome, dataNascimento, senha);
+        
     }
     
-//FUNÇÕES    
-    @Override
-    public void fazerLogin() {
+    public Cliente() {
+        ConsultaContador cont = new ConsultaContador();
+        
+        this.idUser = "CLI"+cont.contadorCliente(); 
+        cont.incrementaClientes();
     }
+    
+//METODOS    
+    
+
+    @Override
+    public void setIdUser(String idUser) {
+        this.idUser = "CLI"+idUser;
+    }
+    
+    
 
 //FUNÇÕES
     //ALUGAR IMOVEL
-    public void alugarImovel(Imovel imovel, ArrayList<Imovel> imoveis, String info, String data, Cliente cliente,
+    
+    public void alugarImovel(Imovel imovel, ArrayList<Imovel> imoveis, String info, Date data, Cliente cliente,
             Corretor corretor) {
 
         Imovel novoImovel = verificarImovel(imovel.getIdmovel(), imoveis);
@@ -40,7 +55,8 @@ public class Cliente extends Utilizador {
             JOptionPane.showMessageDialog(null, imovel.toString(), "FALHA ao Alugar o Imóvel", 1);
         }
     }
-
+    
+    
     //CANCELAR IMOVEL
     public void cancelarIMovel(Imovel imovel, Contrato contrato) {
         if (contrato.getEstado().equals(EstadoContrato.PENDENTE) || contrato.getEstado().equals(EstadoContrato.ATIVO)) {
@@ -96,10 +112,7 @@ public class Cliente extends Utilizador {
     }
     
     //VER TODAS AS NOTIFICAÕES
-    public void verNotificacao(ArrayList<Notificacao> n) {
-        for(Notificacao c: this.notificacoes)
-            System.out.println(c);
-    }
+    
 
     //GETTERS E SETTERS
     public ArrayList<Contrato> getContratos() {
@@ -110,11 +123,13 @@ public class Cliente extends Utilizador {
         this.contratos = contratos;
     }
 
-    public ArrayList<Notificacao> getNotificacoes() {
-        return notificacoes;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setNotificacoes(ArrayList<Notificacao> notificacoes) {
-        this.notificacoes = notificacoes;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
+
+   
 }

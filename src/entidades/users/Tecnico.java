@@ -1,48 +1,29 @@
 package entidades.users;
 
+import dao.ConsultaContador;
 
-public class Tecnico {
-    private String idTecnico;
-    private String nome;
-    private String morada;
+public class Tecnico extends Utilizador {
 
+    private int cont;
 
 //CONSTRUCTOR
-
-    public Tecnico(String idTecnico, String nome, String morada) {
-        this.idTecnico = "TEC"+idTecnico;
+    public Tecnico(String idUser, String nome, String dataNascimento, String senha) {
+        super(nome, dataNascimento, senha);
         this.nome = nome;
-        this.morada = morada;
+    }
+
+    public Tecnico() {
+
+        ConsultaContador cont = new ConsultaContador();
+        this.idUser = "TEC" + cont.contadorTecnico();
+        cont.incrementaTecnicos();
+
     }
 
     @Override
     public String toString() {
-        return "Tecnico{" + "Id Tecnico: " + idTecnico + ", Nome: " + nome + ", Morada:" + morada + '}';
+        return "Tecnico: " + "Id Tecnico: " + super.getIdUser() + ", Nome: " + nome + ", Data de Nascimento:" + super.dataNascimento + "\n";
     }
-    
+
 //GETTRES E SETTERS
-    public String getIdTecnico() {
-        return idTecnico;
-    }
-
-    public void setIdTecnico(String idTecnico) {
-        this.idTecnico = idTecnico;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getMorada() {
-        return morada;
-    }
-
-    public void setMorada(String morada) {
-        this.morada = morada;
-    }
-    
 }

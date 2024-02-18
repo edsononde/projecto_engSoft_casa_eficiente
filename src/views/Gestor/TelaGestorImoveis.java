@@ -6,7 +6,6 @@ package views.Gestor;
 
 import views.Corretor.*;
 import views.Cliente.*;
-import views.*;
 
 /**
  *
@@ -56,11 +55,9 @@ public class TelaGestorImoveis extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("VISUALIZAÇÃO DE IMÓVEIS");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(230, 30, 160, 30);
 
         tbImovel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,14 +74,7 @@ public class TelaGestorImoveis extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tbImovel);
         tbImovel.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(90, 120, 510, 240);
-        getContentPane().add(txtPesquisa);
-        txtPesquisa.setBounds(340, 90, 170, 22);
-
         btnPesquisa.setText("Pesquisa");
-        getContentPane().add(btnPesquisa);
-        btnPesquisa.setBounds(515, 90, 90, 22);
 
         btnAdicionar.setText("Adicionar");
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -92,8 +82,6 @@ public class TelaGestorImoveis extends javax.swing.JFrame {
                 btnAdicionarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAdicionar);
-        btnAdicionar.setBounds(0, 90, 90, 22);
 
         btnRemover.setText("Remover");
         btnRemover.addActionListener(new java.awt.event.ActionListener() {
@@ -101,8 +89,6 @@ public class TelaGestorImoveis extends javax.swing.JFrame {
                 btnRemoverActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRemover);
-        btnRemover.setBounds(100, 90, 80, 22);
 
         btnAlterar.setText("Alterar");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -110,8 +96,6 @@ public class TelaGestorImoveis extends javax.swing.JFrame {
                 btnAlterarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAlterar);
-        btnAlterar.setBounds(190, 90, 65, 22);
 
         jButton1.setText("Feedback");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -119,8 +103,46 @@ public class TelaGestorImoveis extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(0, 120, 80, 22);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(230, 230, 230)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(btnAlterar)
+                .addGap(78, 78, 78)
+                .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(btnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAdicionar)
+                    .addComponent(btnRemover)
+                    .addComponent(btnAlterar)
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisa))
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -134,6 +156,9 @@ public class TelaGestorImoveis extends javax.swing.JFrame {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
+        TelaCadastrarImovel tci = new TelaCadastrarImovel();
+        tci.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
@@ -142,6 +167,9 @@ public class TelaGestorImoveis extends javax.swing.JFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
+        TelaAlterarImovel tci = new TelaAlterarImovel();
+        tci.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     /**

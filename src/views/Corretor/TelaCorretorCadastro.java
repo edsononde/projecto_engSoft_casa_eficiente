@@ -4,6 +4,11 @@
  */
 package views.Corretor;
 
+import dao.ClienteDao;
+import dao.CorretorDao;
+import entidades.users.Cliente;
+import entidades.users.Corretor;
+import javax.swing.JOptionPane;
 import views.Cliente.*;
 
 /**
@@ -63,7 +68,12 @@ public class TelaCorretorCadastro extends javax.swing.JFrame {
 
         jLabel5.setText("Data de Nascimeneto");
 
-        txtDataNasci.setText("jTextField2");
+        txtDataNasci.setText("YYYY-MM-dd");
+        txtDataNasci.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDataNasciActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Senha");
 
@@ -194,9 +204,32 @@ public class TelaCorretorCadastro extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
+        
+        if(txtNome!=null && txtDataNasci!= null && pfdSenha1.getText().equals(pfdSenha2.getText()) ){
+        CorretorDao coDao = new CorretorDao();
+        
+        Corretor cor = new Corretor();
+        
+        cor.setNome(txtNome.getText());
+        cor.setDataNascimento(txtDataNasci.getText());
+        
+        cor.setSenha(pfdSenha2.getText());
+        
+        coDao.inserir(cor);
+        
         TelaCorretorMenu tco = new TelaCorretorMenu();
         tco.setVisible(true);
         dispose();
+        
+        JOptionPane.showMessageDialog(null, "Corretor Inserido com Sucesso!");
+                
+                }else{
+        
+        JOptionPane.showMessageDialog(null, "Erro ao Inserir!");
+        
+        }
+        
+        
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -205,6 +238,10 @@ public class TelaCorretorCadastro extends javax.swing.JFrame {
         tcl.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void txtDataNasciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataNasciActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDataNasciActionPerformed
 
     /**
      * @param args the command line arguments

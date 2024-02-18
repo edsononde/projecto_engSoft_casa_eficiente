@@ -6,7 +6,6 @@ package main;
 
 import views.Cliente.TelaClienteLogin;
 import views.Corretor.TelaCorretorLogin;
-import views.*;
 import views.Gestor.TelaGestorLogin;
 import views.Tecnico.TelaTecnicoLogin;
 import views.naoLogado.TelaNaoLogadoImovel;

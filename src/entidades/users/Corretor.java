@@ -1,11 +1,13 @@
 package entidades.users;
 
+import dao.ConsultaContador;
 import entidades.enumerados.EstadoImovel;
 import entidades.acoes.Contrato;
 import entidades.acoes.Imovel;
 import entidades.acoes.Manutencao;
 import entidades.acoes.Notificacao;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class Corretor extends Utilizador {
@@ -13,18 +15,23 @@ public class Corretor extends Utilizador {
     private ArrayList<Imovel> listaDeImoveis;
     private ArrayList<Contrato> contratos;
     private ArrayList<Notificacao> notificacoes;
-
+   
     public Corretor(String idUser, String nome, String dataNascimento, String senha) {
-        super(idUser, nome, dataNascimento, senha);
+        super(nome, dataNascimento, senha);
         contratos = new ArrayList<>();
         notificacoes = new ArrayList<>();
         listaDeImoveis = new ArrayList<>();
-        this.setIdUser("COR"+nome);
+        
+    }
+    
+    public Corretor(){
+         ConsultaContador cont = new ConsultaContador();
+        
+        this.idUser = "COR"+cont.contadorCorretor();
+        cont.incrementaCorretores();
     }
 
-    @Override
-    public void fazerLogin() {
-    }
+    
 
     public void adicionarImovelPortifolio(Imovel imovel) {
         Imovel veImovel = this.verificarImovel(idUser, listaDeImoveis);
@@ -54,8 +61,12 @@ public class Corretor extends Utilizador {
             System.out.println(c);
     }
     
-    public void pedirManutencao(Imovel imovel, String idManutencao, String problema, String data){
-        Manutencao manutecao = new Manutencao(idManutencao, imovel, problema, data);
+    public void pedirManutencao(String imovel, String idManutencao, String problema, Date data){
+        Manutencao manutencao = new Manutencao(idManutencao, problema, data);
+        manutencao.setImovel(imovel);
     }
+    
+    
+    
 
 }

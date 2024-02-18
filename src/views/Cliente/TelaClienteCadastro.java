@@ -4,6 +4,10 @@
  */
 package views.Cliente;
 
+import dao.ClienteDao;
+import entidades.users.Cliente;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author edson
@@ -51,7 +55,7 @@ public class TelaClienteCadastro extends javax.swing.JFrame {
 
         jLabel3.setText("Nome:");
 
-        lblId.setText("UTI");
+        lblId.setText("CLI");
 
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,15 +65,30 @@ public class TelaClienteCadastro extends javax.swing.JFrame {
 
         jLabel5.setText("Data de Nascimeneto");
 
-        txtDataNasci.setText("jTextField2");
+        txtDataNasci.setText("YYYY-MM-dd");
+        txtDataNasci.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDataNasciActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Senha");
 
         pfdSenha1.setText("jPasswordField1");
+        pfdSenha1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pfdSenha1ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Senha");
 
         pfdSenha2.setText("jPasswordField2");
+        pfdSenha2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pfdSenha2ActionPerformed(evt);
+            }
+        });
 
         btnEntrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnEntrar.setText("ENTRAR");
@@ -95,7 +114,7 @@ public class TelaClienteCadastro extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnVoltar)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(12, Short.MAX_VALUE)
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -117,18 +136,18 @@ public class TelaClienteCadastro extends javax.swing.JFrame {
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblId)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtNome)
-                                        .addGap(64, 64, 64))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addGap(0, 6, Short.MAX_VALUE)
                                         .addComponent(txtDataNasci, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(77, 77, 77)))))))
+                                        .addGap(77, 77, 77))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtNome)
+                                        .addGap(64, 64, 64))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEntrar)
                 .addGap(29, 29, 29))
@@ -139,9 +158,9 @@ public class TelaClienteCadastro extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jLabel1)
                 .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(lblId))
+                    .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -188,13 +207,39 @@ public class TelaClienteCadastro extends javax.swing.JFrame {
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
+        
+        if(txtNome!=null && txtDataNasci!= null && pfdSenha1.getText().equals(pfdSenha2.getText()) ){
+        ClienteDao cDao = new ClienteDao();
+        
+        Cliente cli = new Cliente();
+        
+        cli.setNome(txtNome.getText());
+        cli.setDataNascimento(txtDataNasci.getText());
+        cli.setEndereco("Terra");
+        cli.setSenha(pfdSenha2.getText());
+        
+        cDao.inserir(cli);
+        
         TelaClienteMenu tco = new TelaClienteMenu();
         tco.setVisible(true);
         dispose();
+        
+        JOptionPane.showMessageDialog(null, "Cliente Inserido com Sucesso!");
+                
+                }else{
+        
+        JOptionPane.showMessageDialog(null, "Erro ao Inserir!");
+        
+        }
+        
+        
+        
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -203,6 +248,18 @@ public class TelaClienteCadastro extends javax.swing.JFrame {
         tcl.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void txtDataNasciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataNasciActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDataNasciActionPerformed
+
+    private void pfdSenha1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pfdSenha1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pfdSenha1ActionPerformed
+
+    private void pfdSenha2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pfdSenha2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pfdSenha2ActionPerformed
 
     /**
      * @param args the command line arguments

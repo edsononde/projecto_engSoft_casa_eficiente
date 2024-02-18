@@ -4,6 +4,8 @@
  */
 package views.Tecnico;
 
+import entidades.users.Tecnico;
+import javax.swing.JOptionPane;
 import views.Corretor.*;
 import views.Cliente.*;
 
@@ -19,6 +21,7 @@ public class TelaTecnicoCadastro extends javax.swing.JFrame {
     public TelaTecnicoCadastro() {
         initComponents();
         setLocationRelativeTo(null);
+        int cont;
     }
 
     /**
@@ -209,9 +212,16 @@ public class TelaTecnicoCadastro extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        TelaTecnicoMenu tco = new TelaTecnicoMenu();
-        tco.setVisible(true);
-        dispose();
+        if(txtNome.getText() != null && txtDataNasci.getText() != null && pfdSenha1.getText().equals(pfdSenha2.getText()) && txtMorada.getText()!= null){
+            
+           // Tecnico tecnico = new Tecnico(txtMorada.getText(), lblId.getText(), txtNome.getText(), txtDataNasci.getText(),pfdSenha1.getText()!= null);
+           // Tecnicodao tecnicodao = new Tecnicodao();
+            TelaTecnicoMenu tco = new TelaTecnicoMenu();
+            tco.setVisible(true);
+            dispose();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Preencha todos os Campos Devidamente", "ERRO!", 1);
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed

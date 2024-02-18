@@ -1,5 +1,6 @@
 package entidades.users;
 
+import dao.ConsultaContador;
 import entidades.acoes.*;
 import entidades.enumerados.*;
 import java.util.ArrayList;
@@ -11,16 +12,23 @@ public class Gestor extends Utilizador {
     private ArrayList<Imovel> imoveis;
     private EquipeDeManutencao listaTecnicos;
     private ArrayList<Notificacao> notificacoes;
-
+    
 //CONSTRUCTOR
     public Gestor(ArrayList<Corretor> listaCorretores, EquipeDeManutencao listaTecnicos, ArrayList<Imovel> imoveis, String idUser, String nome, String dataNascimento, String senha) {
-        super(idUser, nome, dataNascimento, senha);
+        super(nome, dataNascimento, senha);
         this.listaCorretores = new ArrayList<>();
         this.listaCorretores = listaCorretores;
         this.listaTecnicos = listaTecnicos;
         this.imoveis = new ArrayList<>();
         this.notificacoes = new ArrayList<>();
         
+    }
+    
+    public Gestor(){
+        ConsultaContador cont = new ConsultaContador();
+    this.idUser = "GES"+ cont.contadorGestor();
+    cont.incrementaGestores();
+    
     }
     
 //FUNÇÕES
@@ -143,9 +151,6 @@ public class Gestor extends Utilizador {
         this.listaTecnicos = listaTecnicos;
     }
 
-    @Override
-    public void fazerLogin() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
     
 }
