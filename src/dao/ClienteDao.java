@@ -22,7 +22,7 @@ public class ClienteDao implements DaoGenerica<Cliente> {
     public ClienteDao() {
 
         this.conexao = new Conexao();
-        
+
     }
 
     @Override
@@ -152,90 +152,75 @@ public class ClienteDao implements DaoGenerica<Cliente> {
             throw new RuntimeException(e);
         }
 
-        
-        
     }
-    
+
     public Cliente busca(String nome) {
-        
-        
+
         String sql = "SELECT * FROM CLIENTE WHERE nomeUser = ?";
-        
+
         try {
-            
-            if(this.conexao.conectar()){
-                
+
+            if (this.conexao.conectar()) {
+
                 PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
                 sentenca.setString(1, nome);
-                
+
                 ResultSet resultado = sentenca.executeQuery();
-                
-                while(resultado.next()){
-                    
+
+                while (resultado.next()) {
+
                     Cliente cliente = new Cliente();
-                    
+
                     cliente.setIdUser(resultado.getString("nomeUser"));
-                    
+
                     cliente.setNome(resultado.getString("nome"));
-                    
+
                     cliente.setDataNascimento(resultado.getString("dataNasc"));
-                    
+
                     cliente.setSenha(resultado.getString("pass"));
-                    
+
                     return cliente;
-                    
+
                 }
-                
-                
-                
+
                 sentenca.close();
-                
+
                 this.conexao.getConexao().close();
-                
+
             }
-            
-           return null;
-            
+
+            return null;
+
         } catch (SQLException e) {
-            
+
             throw new RuntimeException(e);
         }
-        
-        
+
     }
-    
-    
-    public void atualizarIdade(){
-        
+
+    public void atualizarIdade() {
+
         String sql = "SET SQL_SAFE_UPDATES = 0; UPDATE user SET idade = FLOOR(DATEDIFF(CURDATE(), dataNasc) / 365); ";
-        
+
         try {
-            
-            if(this.conexao.conectar()){
-                
+
+            if (this.conexao.conectar()) {
+
                 PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
-                
-                
+
                 sentenca.execute();
                 sentenca.close();
-                
+
                 this.conexao.getConexao().close();
-                
+
             }
-            
-            
-            
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        
 
     }
 
-    
-
-    
-    
     public Cliente fazerLogin(String idUser, String senha) {
         String sql = "SELECT * FROM user WHERE tipoUsuario = 'Cliente' AND nomeUser = ? AND pass = ?";
         try {
@@ -263,5 +248,25 @@ public class ClienteDao implements DaoGenerica<Cliente> {
         return null; // Retorna null se não encontrar um usuário com as credenciais fornecidas
     }
 
-}
+    //contar clientes
+    public int contarClientes() {
+        String sql = "SELECT COUNT(*) FROM user WHERE tipoUsuario = 'Cliente'";
+        try {
+            if (this.conexao.conectar()) {
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                ResultSet resultado = sentenca.executeQuery();
+                if (resultado.next()) {
+                    int count = resultado.getInt(1);
+                    sentenca.close();
+                    this.conexao.getConexao().close();
+                    return count;
+                }
+                return 0;
+            }
+            return 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+}

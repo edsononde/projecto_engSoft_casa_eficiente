@@ -200,5 +200,25 @@ public class GestorDao implements DaoGenerica<Gestor> {
         }
         return null; // Retorna null se não encontrar um usuário com as credenciais fornecidas
     }
+    
+    public int contarGestor() {
+        String sql = "SELECT COUNT(*) FROM user WHERE tipoUsuario = 'Gestor'";
+        try {
+            if (this.conexao.conectar()) {
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                ResultSet resultado = sentenca.executeQuery();
+                if (resultado.next()) {
+                    int count = resultado.getInt(1);
+                    sentenca.close();
+                    this.conexao.getConexao().close();
+                    return count;
+                }
+                return 0;
+            }
+            return 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

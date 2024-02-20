@@ -174,4 +174,24 @@ public class ManutencaoDao implements DaoGenerica<Manutencao>{
         
     }
     
+    public int contarManutencao() {
+        String sql = "SELECT COUNT(*) FROM manutencao";
+        try {
+            if (this.conexao.conectar()) {
+                PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                ResultSet resultado = sentenca.executeQuery();
+                if (resultado.next()) {
+                    int count = resultado.getInt(1);
+                    sentenca.close();
+                    this.conexao.getConexao().close();
+                    return count;
+                }
+                return 0;
+            }
+            return 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
 }
