@@ -17,9 +17,13 @@ public class TelaClienteCadastro extends javax.swing.JFrame {
     /**
      * Creates new form TelaClienteCadastro
      */
+    ClienteDao cDao = new ClienteDao();
+    Cliente cli = new Cliente();
+
     public TelaClienteCadastro() {
         initComponents();
         setLocationRelativeTo(null);
+        lblId.setText("CLI" +cDao.contarClientes());
     }
 
     /**
@@ -55,8 +59,6 @@ public class TelaClienteCadastro extends javax.swing.JFrame {
 
         jLabel3.setText("Nome:");
 
-        lblId.setText("CLI");
-
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeActionPerformed(evt);
@@ -91,7 +93,7 @@ public class TelaClienteCadastro extends javax.swing.JFrame {
         });
 
         btnEntrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEntrar.setText("ENTRAR");
+        btnEntrar.setText("CADASTRAR");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
@@ -139,7 +141,7 @@ public class TelaClienteCadastro extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(0, 6, Short.MAX_VALUE)
+                                        .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(txtDataNasci, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(77, 77, 77))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -207,39 +209,35 @@ public class TelaClienteCadastro extends javax.swing.JFrame {
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
-        
-        
+
+
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        
-        if(txtNome!=null && txtDataNasci!= null && pfdSenha1.getText().equals(pfdSenha2.getText()) ){
-        ClienteDao cDao = new ClienteDao();
-        
-        Cliente cli = new Cliente();
-        
-        cli.setNome(txtNome.getText());
-        cli.setDataNascimento(txtDataNasci.getText());
-        cli.setEndereco("Terra");
-        cli.setSenha(pfdSenha2.getText());
-        
-        cDao.inserir(cli);
-        
-        TelaClienteMenu tco = new TelaClienteMenu();
-        tco.setVisible(true);
-        dispose();
-        
-        JOptionPane.showMessageDialog(null, "Cliente Inserido com Sucesso!");
-                
-                }else{
-        
-        JOptionPane.showMessageDialog(null, "Erro ao Inserir!");
-        
+
+        if (txtNome != null && txtDataNasci != null && pfdSenha1.getText().equals(pfdSenha2.getText())) {
+
+            cli.setIdUser(""+cDao.contarClientes());
+            cli.setNome(txtNome.getText());
+            cli.setDataNascimento(txtDataNasci.getText());
+            cli.setSenha(pfdSenha2.getText());
+
+            cDao.inserir(cli);
+
+            TelaClienteMenu tco = new TelaClienteMenu();
+            tco.setVisible(true);
+            dispose();
+
+            JOptionPane.showMessageDialog(null, "Cliente Inserido com Sucesso!");
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Erro ao Inserir!");
+
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed

@@ -34,6 +34,7 @@ public class ClienteDao implements DaoGenerica<Cliente> {
             if (this.conexao.conectar()) {
 
                 PreparedStatement sentenca = this.conexao.getConexao().prepareStatement(sql);
+                String sqlUpdate = "UPDATE USER SET idade = FLOOR(DATEDIFF(CURDATE(), dataNasc) / 365) WHERE nomeUser = ?";
 
                 //comentario
                 sentenca.setString(1, cliente.getIdUser());
@@ -41,13 +42,16 @@ public class ClienteDao implements DaoGenerica<Cliente> {
                 sentenca.setString(3, cliente.getDataNascimento());
                 sentenca.setString(4, "Cliente");
                 sentenca.setString(5, cliente.getNome());
-
                 sentenca.execute();
-
                 sentenca.close();
 
+                // Atualizar a idade
+                PreparedStatement sentencaUpdate = this.conexao.getConexao().prepareStatement(sqlUpdate);
+                sentencaUpdate.setString(1, cliente.getIdUser());
+                sentencaUpdate.execute();
+                sentencaUpdate.close();
+
                 this.conexao.getConexao().close();
-                this.atualizarIdade();
             }
 
             System.out.println("Adicionado com sucesso!");

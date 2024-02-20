@@ -21,10 +21,10 @@ public class Conexao {
     public boolean conectar() {
 
         
-        String url = "jdbc:mysql://localhost:3312/gestao2";
+        String url = "jdbc:mysql://localhost:3306/gestao";
 
         String user = "root";
-        String password = "";
+        String password = "SUPERincu1060";
 
         //Estabelecendo a conexao
         try {

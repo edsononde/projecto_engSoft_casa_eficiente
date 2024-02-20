@@ -29,6 +29,7 @@ public class GestorDao implements DaoGenerica<Gestor> {
     public void inserir(Gestor gestor) {
 
         String sql = "INSERT INTO USER(nomeUser, pass, dataNasc, tipoUsuario, nome) VALUES (?,?,?,?,?)";
+        String sqlUpdate = "UPDATE USER SET idade = FLOOR(DATEDIFF(CURDATE(), dataNasc) / 365) WHERE nomeUser = ?";
         try {
 
             if (this.conexao.conectar()) {
@@ -45,8 +46,13 @@ public class GestorDao implements DaoGenerica<Gestor> {
 
                 sentenca.close();
 
+                // Atualizar a idade
+                PreparedStatement sentencaUpdate = this.conexao.getConexao().prepareStatement(sqlUpdate);
+                sentencaUpdate.setString(1, gestor.getIdUser());
+                sentencaUpdate.execute();
+                sentencaUpdate.close();
+
                 this.conexao.getConexao().close();
-                this.atualizarIdade();
 
             }
 
@@ -173,7 +179,7 @@ public class GestorDao implements DaoGenerica<Gestor> {
             throw new RuntimeException(e);
         }
     }
-    
+
     public Gestor fazerLogin(String idUser, String senha) {
         String sql = "SELECT * FROM user WHERE tipoUsuario = 'Gestor' AND nomeUser = ? AND pass = ?";
         try {
@@ -200,7 +206,7 @@ public class GestorDao implements DaoGenerica<Gestor> {
         }
         return null; // Retorna null se não encontrar um usuário com as credenciais fornecidas
     }
-    
+
     public int contarGestor() {
         String sql = "SELECT COUNT(*) FROM user WHERE tipoUsuario = 'Gestor'";
         try {

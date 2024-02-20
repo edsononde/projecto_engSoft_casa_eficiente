@@ -13,10 +13,9 @@ public abstract class Utilizador {
     protected String nome;
     protected String dataNascimento;
     protected String senha;
-    private int cont;
+    protected int cont;
 //CONSTRUCTOR    
     public Utilizador(String nome, String dataNascimento, String senha) {
-        this.idUser = "UTI"+cont;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.senha = senha;
@@ -99,6 +98,14 @@ public abstract class Utilizador {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public int getContador() {
+        return cont;
+    }
+
+    public void setContador(int cont) {
+        this.cont = cont;
     }
     
     

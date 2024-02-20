@@ -1,5 +1,6 @@
 package entidades.users;
 
+import dao.ClienteDao;
 import dao.ConsultaContador;
 import entidades.acoes.Contrato;
 import entidades.acoes.Imovel;
@@ -12,19 +13,16 @@ import javax.swing.JOptionPane;
 public class Cliente extends Utilizador {
 
     private ArrayList<Contrato> contratos;
-    private String endereco;
    
 //CONSTRUCTORES
     public Cliente(String idUser, String nome, String dataNascimento, String senha) {
         super(nome, dataNascimento, senha);
-        
+        ConsultaContador cont = new ConsultaContador();
+        this.idUser="CLI"+idUser;
     }
     
     public Cliente() {
-        ConsultaContador cont = new ConsultaContador();
-        
-        this.idUser = "CLI"+cont.contadorCliente(); 
-        cont.incrementaClientes();
+       this.idUser="CLI";
     }
     
 //METODOS    
@@ -122,14 +120,4 @@ public class Cliente extends Utilizador {
     public void setContratos(ArrayList<Contrato> contratos) {
         this.contratos = contratos;
     }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-   
 }

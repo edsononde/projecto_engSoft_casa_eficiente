@@ -29,6 +29,7 @@ public class TecnicoDao implements DaoGenerica<Tecnico> {
     public void inserir(Tecnico tec) {
 
         String sql = "INSERT INTO USER(nomeUser, pass, dataNasc, tipoUsuario, nome) VALUES (?,?,?,?,?)";
+        String sqlUpdate = "UPDATE USER SET idade = FLOOR(DATEDIFF(CURDATE(), dataNasc) / 365) WHERE nomeUser = ?";
         try {
 
             if (this.conexao.conectar()) {
@@ -45,6 +46,12 @@ public class TecnicoDao implements DaoGenerica<Tecnico> {
                 sentenca.execute();
 
                 sentenca.close();
+
+                // Atualizar a idade
+                PreparedStatement sentencaUpdate = this.conexao.getConexao().prepareStatement(sqlUpdate);
+                sentencaUpdate.setString(1, tec.getIdUser());
+                sentencaUpdate.execute();
+                sentencaUpdate.close();
 
                 this.conexao.getConexao().close();
 
@@ -205,7 +212,7 @@ public class TecnicoDao implements DaoGenerica<Tecnico> {
         }
         return null; // Retorna null se não encontrar um usuário com as credenciais fornecidas
     }
-    
+
     public int contarTecnico() {
         String sql = "SELECT COUNT(*) FROM user WHERE tipoUsuario = 'Tecnico'";
         try {
