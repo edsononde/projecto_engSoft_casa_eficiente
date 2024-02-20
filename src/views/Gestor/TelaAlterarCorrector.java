@@ -71,7 +71,7 @@ public class TelaAlterarCorrector extends javax.swing.JFrame {
         jLabel7.setText("Senha");
 
         btnEntrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEntrar.setText("ENTRAR");
+        btnEntrar.setText("ALTERAR");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);

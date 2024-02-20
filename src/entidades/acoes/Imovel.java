@@ -13,7 +13,7 @@ public class Imovel {
     private Double valor;
     //private ArrayList<Corretor> corretores;
     private ArrayList<Avaliacao> avaliacoes;
-    private String numUser;
+    private String numUser = "Ninguém";
     
     private Contrato contrato;
     

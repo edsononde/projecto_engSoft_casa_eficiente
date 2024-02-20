@@ -56,11 +56,8 @@ public class TelaTecnicoTecnicos extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
 
         jLabel2.setText("VISUALIZAÇÃO DE TÉCNICOS");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(210, 20, 170, 30);
 
         tbImovel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,14 +74,7 @@ public class TelaTecnicoTecnicos extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tbImovel);
         tbImovel.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(50, 120, 510, 240);
-        getContentPane().add(txtPesquisa);
-        txtPesquisa.setBounds(340, 90, 170, 22);
-
         btnPesquisa.setText("Pesquisa");
-        getContentPane().add(btnPesquisa);
-        btnPesquisa.setBounds(515, 90, 90, 22);
 
         btnVoltar.setText("VOLTAR");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -92,12 +82,8 @@ public class TelaTecnicoTecnicos extends javax.swing.JFrame {
                 btnVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVoltar);
-        btnVoltar.setBounds(10, 370, 90, 22);
 
         btnRemover.setText("Remover");
-        getContentPane().add(btnRemover);
-        btnRemover.setBounds(100, 90, 80, 22);
 
         btnAlterar.setText("Alterar");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -105,12 +91,8 @@ public class TelaTecnicoTecnicos extends javax.swing.JFrame {
                 btnAlterarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAlterar);
-        btnAlterar.setBounds(190, 90, 65, 22);
 
         btnAdicionar1.setText("Adicionar");
-        getContentPane().add(btnAdicionar1);
-        btnAdicionar1.setBounds(0, 90, 90, 22);
 
         btnVoltar1.setText("VOLTAR");
         btnVoltar1.addActionListener(new java.awt.event.ActionListener() {
@@ -118,8 +100,52 @@ public class TelaTecnicoTecnicos extends javax.swing.JFrame {
                 btnVoltar1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVoltar1);
-        btnVoltar1.setBounds(10, 370, 90, 22);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(btnAdicionar1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(btnAlterar)
+                .addGap(85, 85, 85)
+                .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(btnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnVoltar1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAdicionar1)
+                    .addComponent(btnRemover)
+                    .addComponent(btnAlterar)
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisa))
+                .addGap(8, 8, 8)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnVoltar1)
+                    .addComponent(btnVoltar)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
