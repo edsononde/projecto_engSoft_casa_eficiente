@@ -60,8 +60,6 @@ public class TelaCorretorCadastro extends javax.swing.JFrame {
 
         jLabel3.setText("Nome:");
 
-        lblId.setText("UTI");
-
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeActionPerformed(evt);

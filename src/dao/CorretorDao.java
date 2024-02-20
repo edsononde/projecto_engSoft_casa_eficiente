@@ -29,6 +29,7 @@ public class CorretorDao implements DaoGenerica<Corretor> {
     public void inserir(Corretor corretor) {
 
         String sql = "INSERT INTO USER(nomeUser, pass, dataNasc, tipoUsuario, nome) VALUES (?,?,?,?,?)";
+        String sqlUpdate = "UPDATE USER SET idade = FLOOR(DATEDIFF(CURDATE(), dataNasc) / 365) WHERE nomeUser = ?";
 
         try {
 
@@ -46,8 +47,13 @@ public class CorretorDao implements DaoGenerica<Corretor> {
 
                 sentenca.close();
 
+                 // Atualizar a idade
+                PreparedStatement sentencaUpdate = this.conexao.getConexao().prepareStatement(sqlUpdate);
+                sentencaUpdate.setString(1, corretor.getIdUser());
+                sentencaUpdate.execute();
+                sentencaUpdate.close();
+
                 this.conexao.getConexao().close();
-                this.atualizarIdade();
             }
 
             System.out.println("Adicionado com sucesso!");
