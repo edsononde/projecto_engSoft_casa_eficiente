@@ -60,7 +60,7 @@ public class Corretor extends Utilizador {
             case 1 ->
                 imovel.setTipo(alteracao);
             case 2 ->
-                imovel.setEndereco(alteracao);
+                imovel.setCidade(alteracao);
             default ->
                 JOptionPane.showMessageDialog(null, "Opção não Permitida", "INVÁLIDA", 1);
         }

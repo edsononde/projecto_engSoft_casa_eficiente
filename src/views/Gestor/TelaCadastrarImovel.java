@@ -4,6 +4,10 @@
  */
 package views.Gestor;
 
+import dao.ImovelDao;
+import entidades.acoes.Imovel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author edson
@@ -13,9 +17,12 @@ public class TelaCadastrarImovel extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastrarImovel
      */
+    ImovelDao imoveldao = new ImovelDao();
+
     public TelaCadastrarImovel() {
         initComponents();
         setLocationRelativeTo(null);
+        lblIdentificador.setText("IM" + imoveldao.contarImoveis());
     }
 
     /**
@@ -54,8 +61,6 @@ public class TelaCadastrarImovel extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Identificador:");
 
-        lblIdentificador.setText("jLabel3");
-
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
         jLabel3.setText("Cidade");
@@ -90,12 +95,12 @@ public class TelaCadastrarImovel extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 3, Short.MAX_VALUE)))
+                        .addComponent(txtCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 18, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -115,7 +120,7 @@ public class TelaCadastrarImovel extends javax.swing.JFrame {
                     .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(txtCasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -163,7 +168,7 @@ public class TelaCadastrarImovel extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(lblIdentificador))
                                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(45, 45, 45)
+                                .addGap(21, 21, 21)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel7)
@@ -172,7 +177,7 @@ public class TelaCadastrarImovel extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -188,11 +193,11 @@ public class TelaCadastrarImovel extends javax.swing.JFrame {
                     .addComponent(txtNumQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel8)
-                        .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                        .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVoltar)
                     .addComponent(btnCadastrar))
@@ -215,6 +220,25 @@ public class TelaCadastrarImovel extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
+        if (!txtTipo.getText().isEmpty() && !txtCidade.getText().isEmpty() && !txtBairro.getText().isEmpty() && !txtRua.getText().isEmpty()
+                && !txtCasa.getText().isEmpty() && !txtNumQuartos.getText().isEmpty()) {
+            String tipo = txtTipo.getText();
+            String cidade = txtCidade.getText();
+            String bairro = txtBairro.getText();
+            String rua = txtRua.getText();
+            int numeroCasa = Integer.parseInt(txtCasa.getText());
+            int numeroQuartos = Integer.parseInt(txtNumQuartos.getText());
+
+            Imovel imovel = new Imovel(tipo, ""+imoveldao.contarImoveis(), cidade, bairro, rua, numeroCasa, numeroQuartos);
+            imoveldao.inserir(imovel);
+
+            TelaGestorImoveis tgi = new TelaGestorImoveis();
+            tgi.setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Prenncha os campos todos", "CAMPOS VAZIOS", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**

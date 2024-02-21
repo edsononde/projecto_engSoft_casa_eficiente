@@ -4,6 +4,11 @@
  */
 package views.Gestor;
 
+import dao.ImovelDao;
+import entidades.acoes.Imovel;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import views.Corretor.*;
 import views.Cliente.*;
 
@@ -16,6 +21,8 @@ public class TelaGestorImoveis extends javax.swing.JFrame {
     /**
      * Creates new form TelaLoginCliente
      */
+    ImovelDao imoveldao = new ImovelDao();
+
     public TelaGestorImoveis() {
         initComponents();
         setLocationRelativeTo(null);
@@ -75,6 +82,11 @@ public class TelaGestorImoveis extends javax.swing.JFrame {
         tbImovel.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         btnPesquisa.setText("Pesquisa");
+        btnPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisaActionPerformed(evt);
+            }
+        });
 
         btnAdicionar.setText("Adicionar");
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -171,6 +183,49 @@ public class TelaGestorImoveis extends javax.swing.JFrame {
         tci.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaActionPerformed
+        // TODO add your handling code here:
+        if (!txtPesquisa.getText().isEmpty()) {
+            Imovel imovel = imoveldao.buscarImovel(txtPesquisa.getText());
+            if (imovel != null) {
+                JOptionPane.showMessageDialog(null, imovel, "ENCONTRADO!", 1);
+            } else {
+                JOptionPane.showMessageDialog(null, "Id não encontrado", "NÃO EXISTE", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            DefaultTableModel model = new DefaultTableModel();
+            // Definir as colunas da tabela
+            model.addColumn("ID");
+            model.addColumn("Tipo");
+            model.addColumn("Cidade");
+            model.addColumn("Bairro");
+            model.addColumn("Rua");
+            model.addColumn("Número da Casa");
+            model.addColumn("Número de Quartos");
+            model.addColumn("Estado");
+            ArrayList<Imovel> imoveis = imoveldao.consultar();
+
+            // Preencher a tabela com os dados dos imóveis
+            for (Imovel imovel : imoveis) {
+                model.addRow(new Object[]{
+                    imovel.getIdmovel(),
+                    imovel.getTipo(),
+                    imovel.getCidade(),
+                    imovel.getBairro(),
+                    imovel.getRua(),
+                    imovel.getNumeroCasa(),
+                    imovel.getNumeroQuartos(),
+                    imovel.getEstado().getEstado()
+                });
+            }
+
+            // Configurar o modelo da tabela
+            tbImovel.setModel(model);
+        }
+
+
+    }//GEN-LAST:event_btnPesquisaActionPerformed
 
     /**
      * @param args the command line arguments

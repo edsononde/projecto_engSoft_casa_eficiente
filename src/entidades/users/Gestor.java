@@ -23,7 +23,7 @@ public class Gestor extends Utilizador {
         this.imoveis = new ArrayList<>();
         this.notificacoes = new ArrayList<>();
         //ConsultaContador cont = new ConsultaContador();
-        this.idUser = "GES"+idUser;//cont.contadorGestor();
+        this.idUser = "GES" + idUser;//cont.contadorGestor();
         //cont.incrementaGestores();
 
     }
@@ -36,10 +36,8 @@ public class Gestor extends Utilizador {
 
     @Override
     public void setIdUser(String idUser) {
-        super.setIdUser("GES"+idUser); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        super.setIdUser("GES" + idUser); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
-    
-    
 
 //FUNÇÕES
     public void pesquisarFuncionario(String id) {
@@ -95,16 +93,15 @@ public class Gestor extends Utilizador {
         }
     }
 
-    public void criarImovel(String tipo, String idmovel, String endereco, int numeroQuartos) {
+    public void criarImovel(String tipo, String idmovel, String cidade, String bairro, String rua, int numeroCasa, int numeroQuartos) {
         Imovel veImovel = this.verificarImovel(idmovel, imoveis);
         if (veImovel == null) {
-            veImovel = new Imovel(tipo, idmovel, endereco, numeroQuartos);
+            veImovel = new Imovel(tipo, idmovel, cidade, bairro, rua, numeroCasa, numeroQuartos);
             imoveis.add(veImovel);
             JOptionPane.showMessageDialog(null, veImovel, "IMÓVEL CRIADO COM SUCESSO", 2);
         } else {
             JOptionPane.showMessageDialog(null, "Este imóvel já existe", "FALHA AO CRIAR IMÓVEL!", 1);
         }
-
     }
 
     public void apagarImovel(String idImovel) {
