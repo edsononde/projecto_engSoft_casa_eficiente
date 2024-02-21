@@ -150,8 +150,7 @@ public class TelaClienteLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!idCliente.getText().isBlank() && !pfdSenha.getText().isBlank()) {
             ClienteDao clientedao = new ClienteDao();
-            Cliente cliente = new Cliente();
-            cliente = clientedao.fazerLogin(idCliente.getText(), pfdSenha.getText());
+            this.cliente = clientedao.fazerLogin(idCliente.getText(), pfdSenha.getText());
             if (cliente != null) {
                 JOptionPane.showMessageDialog(null, "Seja Bem Vindo, " + cliente.getNome(), "Acesso Permitido", 2);
 
@@ -219,6 +218,15 @@ public class TelaClienteLogin extends javax.swing.JFrame {
                 new TelaClienteLogin().setVisible(true);
             }
         });
+    }
+    private Cliente cliente = new Cliente();
+
+    public Cliente getClienteLogin() {
+        return cliente;
+    }
+
+    public void setClienteLogin(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

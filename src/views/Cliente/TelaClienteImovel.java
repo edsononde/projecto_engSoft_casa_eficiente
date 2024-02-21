@@ -4,6 +4,13 @@
  */
 package views.Cliente;
 
+import dao.ClienteDao;
+import dao.ImovelDao;
+import entidades.acoes.Imovel;
+import entidades.users.Cliente;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jason Matias
@@ -13,6 +20,10 @@ public class TelaClienteImovel extends javax.swing.JFrame {
     /**
      * Creates new form TelaLoginCliente
      */
+    Imovel imovel = new Imovel();
+    ImovelDao imoveldao = new ImovelDao();
+    ClienteDao clientedao = new ClienteDao();
+    
     public TelaClienteImovel() {
         initComponents();
         setLocationRelativeTo(null);
@@ -39,12 +50,12 @@ public class TelaClienteImovel extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         txtPesquisa = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnComprar = new javax.swing.JButton();
+        btnAlugar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        btnDisponiveis = new javax.swing.JButton();
+        btnVisualizar = new javax.swing.JButton();
+        btnMeusImoveis = new javax.swing.JButton();
+        btnIndisponiveis = new javax.swing.JButton();
         btnDisponiveis1 = new javax.swing.JButton();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
@@ -97,18 +108,18 @@ public class TelaClienteImovel extends javax.swing.JFrame {
         getContentPane().add(btnPesquisar);
         btnPesquisar.setBounds(570, 90, 90, 22);
 
-        jButton1.setText("Comprar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnComprar.setText("Comprar");
+        btnComprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnComprarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(10, 90, 80, 22);
+        getContentPane().add(btnComprar);
+        btnComprar.setBounds(10, 90, 80, 22);
 
-        jButton2.setText("Alugar");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(100, 90, 75, 22);
+        btnAlugar.setText("Alugar");
+        getContentPane().add(btnAlugar);
+        btnAlugar.setBounds(100, 90, 75, 22);
 
         jButton3.setText("VOLTAR");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -119,22 +130,22 @@ public class TelaClienteImovel extends javax.swing.JFrame {
         getContentPane().add(jButton3);
         jButton3.setBounds(10, 370, 73, 22);
 
-        jButton4.setText("Visualizar");
-        getContentPane().add(jButton4);
-        jButton4.setBounds(190, 90, 90, 22);
+        btnVisualizar.setText("Visualizar");
+        getContentPane().add(btnVisualizar);
+        btnVisualizar.setBounds(190, 90, 90, 22);
 
-        jButton6.setText("Meus Imóveis");
-        getContentPane().add(jButton6);
-        jButton6.setBounds(10, 230, 110, 22);
+        btnMeusImoveis.setText("Meus Imóveis");
+        getContentPane().add(btnMeusImoveis);
+        btnMeusImoveis.setBounds(10, 230, 110, 22);
 
-        btnDisponiveis.setText("Indisponíveis");
-        btnDisponiveis.addActionListener(new java.awt.event.ActionListener() {
+        btnIndisponiveis.setText("Indisponíveis");
+        btnIndisponiveis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDisponiveisActionPerformed(evt);
+                btnIndisponiveisActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDisponiveis);
-        btnDisponiveis.setBounds(10, 190, 100, 22);
+        getContentPane().add(btnIndisponiveis);
+        btnIndisponiveis.setBounds(10, 190, 100, 22);
 
         btnDisponiveis1.setText("Disponíveis");
         btnDisponiveis1.addActionListener(new java.awt.event.ActionListener() {
@@ -156,17 +167,32 @@ public class TelaClienteImovel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if (!txtPesquisa.getText().isEmpty()) {
+            Imovel imovel = imoveldao.buscarImovel(txtPesquisa.getText());
+            if (imovel != null) {
+                JOptionPane.showMessageDialog(null, imovel, "ENCONTRADO!", 1);
+                TelaClienteLogin tcl = new TelaClienteLogin();
+                imoveldao.alugarImovel(txtPesquisa.getText(), tcl.getClienteLogin().getIdUser());
+                ArrayList<Imovel> imoveis = imoveldao.consultar();
+                //tcl.getClienteLogin().alugarImovel(imovel, imoveis, "informação", "21/02/2024", tcl.getClienteLogin());
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Id não encontrado", "NÃO EXISTE", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Escreva alguma coisa!", "Campo Vazio", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnComprarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void btnDisponiveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisponiveisActionPerformed
+    private void btnIndisponiveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndisponiveisActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDisponiveisActionPerformed
+    }//GEN-LAST:event_btnIndisponiveisActionPerformed
 
     private void btnDisponiveis1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisponiveis1ActionPerformed
         // TODO add your handling code here:
@@ -186,16 +212,24 @@ public class TelaClienteImovel extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaClienteImovel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClienteImovel.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaClienteImovel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClienteImovel.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaClienteImovel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClienteImovel.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaClienteImovel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaClienteImovel.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -239,14 +273,14 @@ public class TelaClienteImovel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDisponiveis;
+    private javax.swing.JButton btnAlugar;
+    private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnDisponiveis1;
+    private javax.swing.JButton btnIndisponiveis;
+    private javax.swing.JButton btnMeusImoveis;
     private javax.swing.JButton btnPesquisar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnVisualizar;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JColorChooser jColorChooser2;
     private javax.swing.JColorChooser jColorChooser3;

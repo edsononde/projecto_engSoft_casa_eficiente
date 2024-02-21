@@ -82,11 +82,10 @@ public class ImovelDao implements DaoGenerica<Imovel> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    
     public void alterarImovel(Imovel imovel, String id) {
         String sql = "UPDATE imovel SET tipo = ?, cidade = ?, bairro = ?, rua = ?, numero_casa = ?, "
                 + "n_Quartos = ?, estado = ?  WHERE idImovel = ?";
-        PreparedStatement sentenca = null; 
+        PreparedStatement sentenca = null;
         try {
             if (!this.conexao.conectar()) {
                 // Tratar caso a conexão não seja estabelecida
@@ -188,6 +187,44 @@ public class ImovelDao implements DaoGenerica<Imovel> {
             return null;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void alugarImovel(String idImovel, String nomeUser) {
+        String sql = "UPDATE imovel SET nomeUser = ? WHERE idImovel = ?";
+        PreparedStatement sentenca = null;
+
+        try {
+            if (!this.conexao.conectar()) {
+                JOptionPane.showMessageDialog(null, "Não foi possível estabelecer conexão com o banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            sentenca = this.conexao.getConexao().prepareStatement(sql);
+            sentenca.setString(1, nomeUser);
+            sentenca.setString(2, idImovel);
+            int linhasAfetadas = sentenca.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                JOptionPane.showMessageDialog(null, "Imóvel alugado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Não foi possível alugar o imóvel.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+
+            sentenca.close();
+            this.conexao.desconectar();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao alugar o imóvel: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (sentenca != null) {
+                    sentenca.close();
+                }
+                this.conexao.desconectar();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Erro ao fechar recursos: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
