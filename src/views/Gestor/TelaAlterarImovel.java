@@ -272,7 +272,7 @@ public class TelaAlterarImovel extends javax.swing.JFrame {
                     imovel.setNumeroQuartos(numeroQuartos);
 
                     // Chamar a função de alteração no DAO
-                    imoveldao.alterar(imovel);
+                    imoveldao.alterarImovel(imovel, txtPesquisa.getText());
 
                     JOptionPane.showMessageDialog(null, "Imóvel atualizado com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
                 } else {

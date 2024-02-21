@@ -78,7 +78,12 @@ public class ImovelDao implements DaoGenerica<Imovel> {
     }
 
     @Override
-    public void alterar(Imovel imovel) {
+    public void alterar(Imovel obj) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
+    public void alterarImovel(Imovel imovel, String id) {
         String sql = "UPDATE imovel SET tipo = ?, cidade = ?, bairro = ?, rua = ?, numero_casa = ?, "
                 + "n_Quartos = ?, estado = ?  WHERE idImovel = ?";
         PreparedStatement sentenca = null; 
@@ -97,7 +102,7 @@ public class ImovelDao implements DaoGenerica<Imovel> {
             sentenca.setInt(5, imovel.getNumeroCasa());
             sentenca.setInt(6, imovel.getNumeroQuartos());
             sentenca.setString(7, imovel.getEstado().getEstado());
-            sentenca.setString(8, imovel.getIdmovel());
+            sentenca.setString(8, id);
             sentenca.executeUpdate(); // Usar executeUpdate para instruções de atualização
             sentenca.close();
             this.conexao.desconectar(); // Desconectar após a conclusão da operação

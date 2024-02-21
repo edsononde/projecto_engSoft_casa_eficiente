@@ -175,6 +175,18 @@ public class TelaGestorImoveis extends javax.swing.JFrame {
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         // TODO add your handling code here:
+        if (!txtPesquisa.getText().isEmpty()) {
+            Imovel imovel = imoveldao.buscarImovel(txtPesquisa.getText());
+            if (imovel != null) {
+                JOptionPane.showMessageDialog(null, imovel, "ENCONTRADO!", 1);
+                imoveldao.excluir(txtPesquisa.getText());
+                JOptionPane.showMessageDialog(null, "Apagado com Sucesso", "APAGADO!", 1);
+            } else {
+                JOptionPane.showMessageDialog(null, "Id não encontrado", "NÃO EXISTE", JOptionPane.ERROR_MESSAGE);
+            }
+        } else
+            JOptionPane.showMessageDialog(null, "Preencha a Pesquisa", "", HEIGHT);
+            
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed

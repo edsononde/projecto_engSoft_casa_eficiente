@@ -81,6 +81,11 @@ public class TelaGestorCorrectores extends javax.swing.JFrame {
         txtPesquisa.setBounds(340, 90, 170, 22);
 
         btnPesquisa.setText("Pesquisa");
+        btnPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisaActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnPesquisa);
         btnPesquisa.setBounds(515, 90, 90, 22);
 
@@ -122,6 +127,10 @@ public class TelaGestorCorrectores extends javax.swing.JFrame {
         tac.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPesquisaActionPerformed
 
     /**
      * @param args the command line arguments
