@@ -15,7 +15,8 @@ public class Imovel {
     private EstadoImovel estado;
     private Double valor;
     private ArrayList<Avaliacao> avaliacoes;
-    private String numUser;
+    private String numUser = null;
+    private String idCorrector = null;
     private Contrato contrato;
 
     public Imovel(String tipo, String idmovel, String cidade, String bairro, String rua, int numeroCasa, int numeroQuartos) {
@@ -142,6 +143,14 @@ public class Imovel {
 
     public void setContrato(Contrato contrato) {
         this.contrato = contrato;
+    }
+
+    public String getIdCorrector() {
+        return idCorrector;
+    }
+
+    public void setIdCorrector(String idCorrector) {
+        this.idCorrector = idCorrector;
     }
     
     

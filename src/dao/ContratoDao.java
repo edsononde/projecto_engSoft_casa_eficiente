@@ -28,7 +28,7 @@ public class ContratoDao implements DaoGenerica<Contrato> {
     @Override
     public void inserir(Contrato con) {
 
-        String sql = "INSERT INTO contrato(idContrato, nomeCliente, nomeCorretor, estadoContrato, estadoPagamento, valor, infor, data) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO contrato(idContrato, nomeCliente, nomeCorretor, idContrato, estadoContrato, estadoPagamento, valor, infor, data) VALUES (?,?,?,?,?,?,?)";
         try {
 
             if (this.conexao.conectar()) {
@@ -38,11 +38,12 @@ public class ContratoDao implements DaoGenerica<Contrato> {
                 sentenca.setString(1, con.getIdContrato());
                 sentenca.setString(2, con.getCliente().getIdUser());
                 sentenca.setString(3, con.getCorretor().getIdUser());
-                sentenca.setString(4, con.getEstado().getEstado().toUpperCase());
-                sentenca.setString(5, con.getPagamento().getEstado().toUpperCase());
-                sentenca.setDouble(6, con.getValor());
-                sentenca.setString(7, con.getInformacao());
-                sentenca.setDate(8, (Date) con.getData());
+                sentenca.setString(4, con.getIdContrato());
+                sentenca.setString(5, con.getEstado().getEstado().toUpperCase());
+                sentenca.setString(6, con.getPagamento().getEstado().toUpperCase());
+                sentenca.setDouble(7, con.getValor());
+                sentenca.setString(8, con.getInformacao());
+                sentenca.setDate(9, (Date) con.getData());
 
                 sentenca.execute();
 
@@ -93,6 +94,7 @@ public class ContratoDao implements DaoGenerica<Contrato> {
                     contrato.setPagamento(resultado.getString("estadoContrato"));
 
                     contrato.setData(resultado.getDate("data"));
+                    contrato.setInformacao("idImovel");
 
                     contratos.add(contrato);
 

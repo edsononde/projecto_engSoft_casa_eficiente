@@ -15,7 +15,7 @@ public class Contrato {
     private Corretor corretor;
     private EstadoPagamentoContrato pagamento;
     private EstadoContrato estado;
-   
+   private String idImovel;
 //CONSTRUTORES
     
     public Contrato() {
@@ -103,7 +103,7 @@ public class Contrato {
     }
 
     public void setIdContrato(String idContrato) {
-        this.idContrato = idContrato;
+        this.idContrato = "CON"+idContrato;
     }
 
     public EstadoPagamentoContrato getPagamento() {
@@ -128,6 +128,14 @@ public class Contrato {
     
     public void setEstado(String estado) {
         this.estado = EstadoContrato.valueOf(estado.toUpperCase());
+    }
+
+    public String getIdImovel() {
+        return idImovel;
+    }
+
+    public void setIdImovel(String idImovel) {
+        this.idImovel = idImovel;
     }
     
     

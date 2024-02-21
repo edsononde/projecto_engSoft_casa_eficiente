@@ -5,10 +5,16 @@
 package views.Cliente;
 
 import dao.ClienteDao;
+import dao.ContratoDao;
 import dao.ImovelDao;
+import entidades.acoes.Contrato;
 import entidades.acoes.Imovel;
+import entidades.enumerados.EstadoContrato;
+import entidades.enumerados.EstadoPagamentoContrato;
 import entidades.users.Cliente;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -118,6 +124,11 @@ public class TelaClienteImovel extends javax.swing.JFrame {
         btnComprar.setBounds(10, 90, 80, 22);
 
         btnAlugar.setText("Alugar");
+        btnAlugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlugarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAlugar);
         btnAlugar.setBounds(100, 90, 75, 22);
 
@@ -173,10 +184,21 @@ public class TelaClienteImovel extends javax.swing.JFrame {
             Imovel imovel = imoveldao.buscarImovel(txtPesquisa.getText());
             if (imovel != null) {
                 JOptionPane.showMessageDialog(null, imovel, "ENCONTRADO!", 1);
-                TelaClienteLogin tcl = new TelaClienteLogin();
-                imoveldao.alugarImovel(txtPesquisa.getText(), tcl.getClienteLogin().getIdUser());
-                ArrayList<Imovel> imoveis = imoveldao.consultar();
-                //tcl.getClienteLogin().alugarImovel(imovel, imoveis, "informação", "21/02/2024", tcl.getClienteLogin());
+                if(imovel.getIdCorrector() != null){
+                    TelaClienteLogin tcl = new TelaClienteLogin();
+                    imoveldao.alugarImovel(txtPesquisa.getText(), tcl.getClienteLogin().getIdUser());
+                    Contrato contrato = new Contrato();
+                    ContratoDao contratodao = new ContratoDao();
+                    contrato.setIdContrato(""+contratodao.contarContrato());
+                    contrato.setCliente(tcl.getClienteLogin().getIdUser());
+                    contrato.setData(Date.from(Instant.MIN));
+                    contrato.setEstado(EstadoContrato.ATIVO);
+                    contrato.setPagamento(EstadoPagamentoContrato.PENDENTE);
+                    contrato.setInformacao(imovel.getIdCorrector());
+                    contratodao.inserir(contrato);
+                }
+                else
+                    JOptionPane.showMessageDialog(null, imovel.toString()+"\nCorrector: "+imovel.getIdCorrector(), "ESTE IMÓVEL AINDA NÃO TEM CORRECTOR", JOptionPane.ERROR_MESSAGE);
                 
             } else {
                 JOptionPane.showMessageDialog(null, "Id não encontrado", "NÃO EXISTE", JOptionPane.ERROR_MESSAGE);
@@ -197,6 +219,10 @@ public class TelaClienteImovel extends javax.swing.JFrame {
     private void btnDisponiveis1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisponiveis1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDisponiveis1ActionPerformed
+
+    private void btnAlugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlugarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlugarActionPerformed
 
     /**
      * @param args the command line arguments
